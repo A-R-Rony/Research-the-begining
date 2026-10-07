@@ -75,6 +75,37 @@ $$\text{Embedding Parameters} = 128,256 \times 4,096 = 525,336,576 \text{ parame
 
 > **Architectural Insight**: Just the lookup table translating discrete token IDs into 4,096-dimensional vectors accounts for **~6.5% of Llama-3-8B's entire 8.03-billion parameter budget**.
 
+```mermaid
+flowchart LR
+    subgraph S1["1. Raw Prompt Input"]
+        RAW["'Misinformation detectors can fail.'"]
+    end
+
+    subgraph S2["2. Subword BPE Tokenizer (tiktoken, V=128,256)"]
+        direction TB
+        T1["'Mis' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;──► ID: 72911"]
+        T2["'information' ──► ID: 2378"]
+        T3["' detectors' &nbsp;&nbsp;──► ID: 37912"]
+        T4["' can' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;──► ID: 649"]
+        T5["' fail' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;──► ID: 4102"]
+        T6["'.' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;──► ID: 13"]
+    end
+
+    subgraph S3["3. Embedding Matrix (W_embed)"]
+        direction TB
+        EMB_TABLE["Lookup Table: Shape (128,256 x 4,096)<br/>Total Parameters: 525,336,576<br/>------------------------------------------<br/>Row 0: [e_0,1, ..., e_0,4096]<br/>...<br/>Row 72911: [e_72911,1, ..., e_72911,4096]<br/>...<br/>Row 128255: [e_128255,1, ..., e_128255,4096]"]
+    end
+
+    subgraph S4["4. Continuous Latent Space"]
+        X0["Input Activation Matrix X_0 in R^(6 x 4096)<br/>6 token vectors of 4,096 dimensions each<br/>Feeds directly into Transformer Block 1"]
+    end
+
+    RAW --> S2
+    S2 -->|"Row Index Retrieval"| EMB_TABLE
+    EMB_TABLE --> X0
+```
+
+
 ---
 
 ## 3. What Are "Parameters" and "Weights"?
@@ -122,6 +153,13 @@ When you load an LLM into VRAM, your memory is shared among four distinct consum
 ##### The Dreaded `CUDA Out of Memory (OOM)` Error:
 Unlike CPU RAM (which can overflow into slow SSD "swap space" when full), **GPU VRAM is a hard physical ceiling**. If your model, CUDA context, KV-cache, and activations request even **1 megabyte more** than the 15.8 GB physical limit of a Colab T4, the NVIDIA driver halts instantly with a fatal `torch.cuda.OutOfMemoryError`.
 
+<div align="center">
+  <img src="../assets/vram_allocation_comparison.jpg" alt="GPU VRAM Usage Comparison on Google Colab T4: FP16 vs 4-bit NF4" width="600" />
+  <p><b>Figure 1:</b> <i>GPU VRAM allocation on an NVIDIA T4 GPU (15.8 GB physical ceiling). FP16 precision exceeds physical capacity (~18.8 GB) triggering an immediate CUDA OOM crash, while 4-bit NF4 quantization occupies only ~7.5 GB, leaving ~8.3 GB of free headroom for inference and long contexts.</i></p>
+</div>
+
+
+
 #### 3. Why Are Inputs and Outputs Vectors ($\mathbf{x}$ and $\mathbf{y}$)?
 Neural networks cannot calculate with words. Instead:
 - After tokenization and embedding lookup, every token is represented as a **vector** (a 1D list of coordinates), denoted as $\mathbf{x}$.
@@ -165,28 +203,11 @@ The matrix $\mathbf{W}$ transformed our 3D vector $\mathbf{x}$ into a new 2D vec
 ### 3.2 Transformer Anatomy: Where Do the 8 Billion Parameters Reside?
 Llama-3-8B is a **Decoder-only Transformer** consisting of **32 identical stacked transformer blocks**:
 
-```
-Input Tokens ──► Embedding Matrix (128k x 4096)
-                      │
-        ┌─────────────┴─────────────┐
-        │  Transformer Block 1..32  │
-        │  ├── RMSNorm              │
-        │  ├── Grouped-Query Attn   │
-        │  │   ├── W_Q (4096 x 4096)│
-        │  │   ├── W_K (4096 x 1024)│
-        │  │   ├── W_V (4096 x 1024)│
-        │  │   └── W_O (4096 x 4096)│
-        │  ├── RMSNorm              │
-        │  └── SwiGLU MLP           │
-        │      ├── W_gate (4096x14k)│
-        │      ├── W_up   (4096x14k)│
-        │      └── W_down (14k x 4k)│
-        └─────────────┬─────────────┘
-                      │
-                 Final RMSNorm
-                      │
-        LM Head / Unembedding (4096 x 128k) ──► Logits over 128,256 tokens
-```
+<div align="center">
+  <img src="../assets/llama3_decoder_architecture.jpg" alt="Meta Llama-3-8B Decoder-Only Architecture Diagram" width="480" />
+  <p><b>Figure 2:</b> <i>Complete architecture of the Meta Llama-3-8B Decoder-Only Transformer (in the classic 'Attention Is All You Need' paper aesthetic). Features 32 stacked transformer blocks with Pre-RMSNorm, Grouped-Query Attention (GQA), and SwiGLU MLP.</i></p>
+</div>
+
 
 #### Detailed Breakdown of Layers in Llama-3-8B:
 1. **Self-Attention Sublayer (Grouped-Query Attention - GQA)**:
@@ -226,25 +247,109 @@ Llama-3-8B contains **32 stacked transformer layers**. Think of a token passing 
 - **Floors 9 to 20 (Middle Layers)**: The model links concepts together—identifying who "he" refers to, recognizing entities, and understanding sentence intent.
 - **Floors 21 to 32 (Top Layers)**: High-level abstract reasoning—synthesizing tone, maintaining complex persona conditioning (e.g., skeptical fact-checker vs. persuasive believer), and formulating the final probabilities for the next token.
 
-#### 3. Demystifying Self-Attention ($Q, K, V, O$) for Beginners
-In natural language, the meaning of a word changes depending on the words around it. **Self-Attention** is the mechanism that lets words "look at" and influence each other.
+```mermaid
+flowchart TD
+    subgraph FLOORS_TOP["Floors 21 - 32: Abstract Reasoning & Persona Conditioning"]
+        direction TB
+        F32["Floor 32: Final Logits Formation & Next-Token Probability Distribution"]
+        F28["Floor 28: Global Tone, Persona Consistency & Stylistic Alignment"]
+        F24["Floor 24: Complex Logical Deduction & Nuanced Fact-Checking Heuristics"]
+    end
 
-To understand Query ($Q$), Key ($K$), and Value ($V$), use the **YouTube Search Analogy**:
-- **Query ($Q$)**: The search phrase you type into the search bar.
-  - *Example*: In the sentence *"The bank of the river was steep,"* the word `"bank"` asks: *"Am I a money bank or a water bank?"*
-- **Key ($K$)**: The title tags on all available videos.
-  - *Example*: The word `"river"` advertises its key: *"I am a natural body of flowing water."*
-- **Attention Score ($Q \cdot K^T$)**: How well your search query matches each video's title tags.
-  - The Query of `"bank"` matches strongly with the Key of `"river"`!
-- **Value ($V$)**: The actual video content you stream.
-  - The word `"river"` transfers its rich geographical features into the word `"bank"`.
-- **Output Projection ($W_O$)**: Collects the information gathered across all attention heads and packages it back into the standard 4,096-dimensional format.
+    subgraph FLOORS_MID["Floors 9 - 20: Semantic Synthesis & Entity Relationships"]
+        direction TB
+        F20["Floor 20: Cross-Sentence Relational Reasoning & Argument Coherence"]
+        F15["Floor 15: Coreference Resolution (linking 'it' / 'they' to specific entities)"]
+        F10["Floor 10: Named Entity Recognition & Word Sense Disambiguation"]
+    end
+
+    subgraph FLOORS_LOW["Floors 1 - 8: Surface Syntax & Local Mechanics"]
+        direction TB
+        F8["Floor 8: Clause Boundary Detection & Grammatical Dependencies"]
+        F4["Floor 4: Part-of-Speech Tagging & Local Phrase Chunking"]
+        F1["Floor 1: Subword Collocations, Punctuation & Orthographic Structure"]
+    end
+
+    INPUT_VEC["Input Token Vector x_0 in R^4096"] ==> FLOORS_LOW
+    FLOORS_LOW ==> FLOORS_MID
+    FLOORS_MID ==> FLOORS_TOP
+    FLOORS_TOP ==> OUTPUT_HEAD["Unembedding LM Head -> Final Vocabulary Probabilities"]
+```
+
+#### 3. Mathematical Foundations of Scaled Dot-Product Self-Attention ($Q, K, V, O$)
+In natural language sequences, static token representations cannot capture relational syntax, pronoun bindings, or long-range semantics. **Self-Attention** is the primary communication mechanism in transformers that dynamically calculates sequence-wide token interaction matrices, enabling contextual routing of information across positions.
+
+Given a layer's normalized input activation tensor $\mathbf{X} \in \mathbb{R}^{L \times d_{\text{model}}}$ (where sequence length is $L$ and model dimension $d_{\text{model}} = 4,096$):
+
+##### A. The Three Linear Projections ($\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V$)
+Rather than computing dot-products directly on raw activation vectors $\mathbf{X}$, the model projects each token representation into three separate specialized vector spaces:
+$$\mathbf{Q} = \mathbf{X} \mathbf{W}_Q, \quad \mathbf{K} = \mathbf{X} \mathbf{W}_K, \quad \mathbf{V} = \mathbf{X} \mathbf{W}_V$$
+
+Where in Llama-3-8B:
+- **Query Projection Matrix** $\mathbf{W}_Q \in \mathbb{R}^{4096 \times 4096}$ ($32 \text{ heads} \times 128 \text{ dim}$)
+- **Key Projection Matrix** $\mathbf{W}_K \in \mathbb{R}^{4096 \times 1024}$ ($8 \text{ heads} \times 128 \text{ dim}$ via GQA)
+- **Value Projection Matrix** $\mathbf{W}_V \in \mathbb{R}^{4096 \times 1024}$ ($8 \text{ heads} \times 128 \text{ dim}$ via GQA)
+
+> **Why Project Separately? (Asymmetric Information Routing)**:
+> If attention operated directly on $\mathbf{X}\mathbf{X}^T$, the interaction would be strictly symmetric ($\mathbf{x}_i \cdot \mathbf{x}_j = \mathbf{x}_j \cdot \mathbf{x}_i$). Natural language requires asymmetric dependencies: a pronoun (e.g., *"it"*) must search for its antecedent noun (e.g., *"transformer"*), but the noun does not necessarily need to attend to the pronoun. 
+> - $\mathbf{Q}$ defines **what the token is actively searching for**.
+> - $\mathbf{K}$ defines **what properties the token offers to matching queries**.
+> - $\mathbf{V}$ encapsulates **the actual semantic payload** to be transferred if a query matches.
+
+##### B. Scaled Dot-Product Attention Equation
+Within each attention head, the contextualized representation is computed via:
+$$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}} + \mathbf{M}\right) \mathbf{V}$$
+
+Let us dissect each mathematical operation:
+
+1. **Affine Affinity Matrix ($\mathbf{Q}\mathbf{K}^T \in \mathbb{R}^{L \times L}$)**:
+   Computes the pairwise inner product between every token query vector $\mathbf{q}_i$ and all available key vectors $\mathbf{k}_j$:
+   $$S_{i,j} = \mathbf{q}_i \cdot \mathbf{k}_j = \sum_{m=1}^{d_k} q_{i,m} k_{j,m}$$
+   A high positive dot product indicates strong alignment between the query's information demand and the key's advertised features.
+
+2. **The Variance Scaling Factor ($1/\sqrt{d_k} = 1/\sqrt{128} \approx 0.0884$)**:
+   - Under the assumption that components of $\mathbf{q}$ and $\mathbf{k}$ are zero-mean independent random variables with unit variance ($\sigma^2 = 1$), the sum of their element-wise products has variance $\text{Var}(\mathbf{q} \cdot \mathbf{k}) = d_k$.
+   - For $d_k = 128$, the standard deviation of raw dot products scales to $\sqrt{128} \approx 11.31$.
+   - Without scaling, large dot-product magnitudes push the $\text{Softmax}$ exponentiation into extreme saturation zones where derivatives approach zero ($\frac{\partial \text{Softmax}}{\partial z} \approx 0$), causing catastrophic **vanishing gradients** during training.
+   - Dividing by $\sqrt{d_k}$ normalizes the variance back to $1.0$, maintaining stable gradient flow throughout backpropagation.
+
+3. **Causal Attention Masking ($\mathbf{M} \in \mathbb{R}^{L \times L}$)**:
+   In autoregressive generation, tokens must not attend to future tokens. The causal mask $\mathbf{M}$ is an upper-triangular matrix:
+   $$M_{i,j} = \begin{cases} 0 & \text{if } j \le i \\ -\infty & \text{if } j > i \end{cases}$$
+   Since $\exp(-\infty) = 0$, applying this additive mask guarantees strictly zero probability mass assigned to future sequence positions.
+
+4. **Softmax Normalization (The Dynamic Attention Distribution $\mathbf{A} \in \mathbb{R}^{L \times L}$)**:
+   Converts unbounded alignment logits into a normalized convex combination over context positions:
+   $$A_{i,j} = \frac{\exp\left(\frac{\mathbf{q}_i \cdot \mathbf{k}_j}{\sqrt{d_k}} + M_{i,j}\right)}{\sum_{p=1}^{L} \exp\left(\frac{\mathbf{q}_i \cdot \mathbf{k}_p}{\sqrt{d_k}} + M_{i,p}\right)}, \quad \sum_{j=1}^{i} A_{i,j} = 1.0$$
+
+5. **Value Matrix Aggregation ($\mathbf{A}\mathbf{V} \in \mathbb{R}^{L \times d_k}$)**:
+   For each token $i$, the output context vector is the **convex combination (weighted sum)** of all accessible value vectors:
+   $$\text{head}_i = \sum_{j=1}^{i} A_{i,j} \mathbf{v}_j$$
+   Tokens blend in the semantic payload $\mathbf{v}_j$ of historical context tokens weighted by their calculated relevance $A_{i,j}$.
+
+##### C. Multi-Head Aggregation & Output Projection ($\mathbf{W}_O$)
+- **Subspace Specialization**: A single attention head would force the model to average all semantic, syntactic, and structural relationships into a single scalar distribution. Having 32 distinct heads allows parallel heads to specialize across orthogonal linguistic phenomena (e.g., Head 4 binds subject-verb agreement, Head 12 tracks entity co-references, Head 27 attends to punctuation clause boundaries).
+- **Concatenation**: All 32 head outputs are concatenated along the feature dimension:
+  $$\mathbf{H} = \left[\text{head}_1 \,\|\, \text{head}_2 \,\|\, \dots \,\|\, \text{head}_{32}\right] \in \mathbb{R}^{L \times (32 \times 128)} = \mathbb{R}^{L \times 4096}$$
+- **Output Projection Matrix ($\mathbf{W}_O \in \mathbb{R}^{4096 \times 4096}$)**:
+  Mixes the aggregated representations across all head subspaces and linearly projects the result back into the residual stream:
+  $$\mathbf{Y}_{\text{attn}} = \mathbf{H} \mathbf{W}_O \in \mathbb{R}^{L \times 4096}$$
+- **Residual Addition**:
+  $$\mathbf{X}_{\text{next}} = \mathbf{X} + \mathbf{Y}_{\text{attn}}$$
+  The attention layer operates as an additive write to the model's residual communication backbone.
+
 
 #### 4. Grouped-Query Attention (GQA): Why 8 KV Heads Instead of 32?
 - In traditional **Multi-Head Attention (MHA)**, if you have 32 Query heads, you also have 32 Key heads and 32 Value heads.
 - During generation, all past Keys and Values must stay stored in VRAM (the **KV-cache**) so they aren't recalculated on every step. With 32 KV heads and long contexts, this quickly causes a `CUDA Out of Memory` crash.
 - **Llama-3 uses Grouped-Query Attention (GQA)**: It keeps 32 Query heads, but groups them so that **4 Query heads share 1 Key and 1 Value head** ($32 \div 4 = 8$ KV heads).
 - **The Payoff**: GQA cuts the KV-cache VRAM footprint by **75% ($4\times$ reduction)** with virtually zero loss in model reasoning power!
+
+<div align="center">
+  <img src="../assets/gqa_attention_mechanism.jpg" alt="Attention Mechanisms: Scaled Dot-Product vs Grouped-Query Attention in Meta Llama-3" width="620" />
+  <p><b>Figure 3:</b> <i>Attention mechanisms compared: Standard Scaled Dot-Product Attention (left) vs. Grouped-Query Attention (GQA) in Meta Llama-3 (right). Query heads are grouped 4:1 to share Key and Value projections, reducing KV-cache memory by 75%.</i></p>
+</div>
+
 
 #### 5. Feed-Forward Networks (SwiGLU MLP): The Model's "Fact Library"
 If **Attention is communication** (words talking to other words in the prompt), the **MLP (Multi-Layer Perceptron) is individual thinking & memory retrieval**.
@@ -257,8 +362,50 @@ After a token gathers context from its neighbors via Attention, it enters the Sw
   - $W_{\text{down}}$ then compresses the representation back down to the standard 4,096 dimensions.
 - **Astonishing Fact**: Over **56% of all parameters in Llama-3-8B live inside these MLP layers**!
 
+<div align="center">
+  <img src="../assets/swiglu_mlp_architecture.jpg" alt="Traditional Transformer MLP vs SwiGLU MLP in Meta Llama-3" width="600" />
+  <p><b>Figure 4:</b> <i>Traditional Transformer MLP with single projection (left) vs. SwiGLU MLP with dual parallel gated projections in Meta Llama-3 (right). Over 56% of Llama-3-8B's parameters reside in these SwiGLU layers.</i></p>
+</div>
+
+
 #### 6. The Exact Accounting Audit: Where Does 8,030,261,248 Come From?
 Here is the exact mathematical ledger accounting for every single parameter in Llama-3-8B:
+
+```mermaid
+flowchart TD
+    TOTAL["Llama-3-8B Grand Total Parameter Budget<br/>8,030,261,248 Parameters (100.0%)"]
+
+    TOTAL --> EMB["Token Embedding Matrix W_embed<br/>128,256 x 4,096 = 525,336,576 Params<br/>(6.54% of Total)"]
+    TOTAL --> BLOCKS["32 Transformer Blocks<br/>32 x 218,112,000 = 6,979,584,000 Params<br/>(86.92% of Total)"]
+    TOTAL --> HEAD["LM Unembedding Head W_head<br/>4,096 x 128,256 = 525,336,576 Params<br/>(6.54% of Total)"]
+    TOTAL --> FINAL_NORM["Final RMSNorm Gain Vector<br/>1 x 4,096 = 4,096 Params<br/>(< 0.0001%)"]
+
+    subgraph BLOCK_SPLIT["Dissecting a Single Transformer Block (218,112,000 Params)"]
+        direction TB
+        
+        subgraph MLP_LAYER["SwiGLU MLP Sublayer: 176,160,768 Params per block (80.8% of block)"]
+            direction LR
+            WG["W_gate: 58.72M"]
+            WU["W_up: 58.72M"]
+            WD["W_down: 58.72M"]
+        end
+        
+        subgraph ATTN_LAYER["GQA Attention Sublayer: 41,943,040 Params per block (19.2% of block)"]
+            direction LR
+            WQ["W_Q: 16.78M"]
+            WK["W_K: 4.19M"]
+            WV["W_V: 4.19M"]
+            WO["W_O: 16.78M"]
+        end
+
+        subgraph NORM_LAYER["RMSNorm Layers: 8,192 Params per block (< 0.01%)"]
+            N1["Attn Norm: 4,096"]
+            N2["MLP Norm: 4,096"]
+        end
+    end
+
+    BLOCKS ==> BLOCK_SPLIT
+```
 
 | Component | Matrix Dimensions | Formula / Calculation | Parameter Count |
 | :--- | :--- | :--- | :---: |
@@ -294,6 +441,35 @@ During text generation, Llama-3-8B performs next-token prediction:
    $$P(w_i) = \frac{\exp(z_i / T)}{\sum_{j=1}^{V} \exp(z_j / T)}$$
 4. The generation loop samples from $P(w)$ (using Top-$p$ nucleus sampling or greedy argmax) and appends the selected token ID back to the input for the next cycle.
 
+```mermaid
+flowchart LR
+    subgraph S1["1. Hidden Representation"]
+        H["Last Token Hidden State<br/>h_last in R^4096<br/>(Summarizes full sequence context)"]
+    end
+
+    subgraph S2["2. Vocabulary Projection"]
+        W_HEAD["LM Head Matrix W_head<br/>(4096 x 128,256)"]
+        Z["Logits Vector z in R^128,256<br/>Un-normalized affinity scores"]
+        H --> W_HEAD --> Z
+    end
+
+    subgraph S3["3. Temperature & Softmax"]
+        TEMP["Temperature Scaling<br/>z_scaled = z / T"]
+        SM["Softmax Normalization<br/>P(w_i) = exp(z_i / T) / sum(exp(z_j / T))"]
+        DIST["Categorical Probability Distribution<br/>128,256 probabilities summing to 1.0"]
+        Z --> TEMP --> SM --> DIST
+    end
+
+    subgraph S4["4. Sampling & Token Feedback"]
+        SAMPLE["Sampling Strategy<br/>• Greedy: argmax P(w)<br/>• Nucleus: Top-p cumulative probability"]
+        TOK["Selected Next Token ID<br/>e.g., ID 4102 (' fail')"]
+        DIST --> SAMPLE --> TOK
+    end
+
+    TOK -.->|"Append to Context & Repeat"| S1
+```
+
+
 ---
 
 ## 4. Parameter Precision Formats & GPU Memory Mathematics
@@ -316,18 +492,37 @@ A standard free Google Colab instance provides an **NVIDIA T4 GPU** with **15.8 
 
 ## 5. Why the 8B Parameter Scale? (The Academic Pareto Frontier)
 
-```
-Model Capability vs. Computational Accessibility
-▲ Reasoning & Persona Nuance
-│                                                     [Llama-3-70B]
-│                                                    (Requires Multi-A100/H100)
-│                                  ★ [Llama-3-8B]
-│                                  (The Sweet Spot: Fits Free Colab T4)
-│
-│          [1B - 3B Models]
-│         (Edge devices, high hallucination, poor adversarial nuance)
-│
-└─────────────────────────────────────────────────────────────► GPU Cost / Infrastructure
+```mermaid
+flowchart TD
+    subgraph T1["Tier 1: Sub-3B Edge Models (1B – 3B)"]
+        direction TB
+        M1["Representative: Llama-3.2-1B / 3B, SmolLM"]
+        HW1["Hardware Requirement: Runs on Mobile, Edge Devices, Consumer CPU"]
+        PRO1["Pros: Near-zero compute cost, ultra-low latency"]
+        CON1["Cons: Severe hallucination, collapses under adversarial personas, fragile JSON adherence"]
+        VER1["Research Verdict: Insufficient reasoning capacity for nuanced NLP benchmarks"]
+    end
+
+    subgraph T2["Tier 2: The Academic Sweet Spot (8B) ★"]
+        direction TB
+        M2["Representative: Meta-Llama-3-8B-Instruct"]
+        HW2["Hardware Requirement: Fits on 16 GB GPU (Free Google Colab T4 via 4-bit NF4)"]
+        PRO2["Pros: Over-trained on 15T tokens, matches Llama-2-70B performance, full access to logits & internal states"]
+        CON2["Cons: Requires basic 4-bit quantization setup for 16GB VRAM"]
+        VER2["Research Verdict: Gold standard for empirical NLP, reproducibility & safety evaluations"]
+    end
+
+    subgraph T3["Tier 3: Giant Frontier Scale (70B – 405B)"]
+        direction TB
+        M3["Representative: Llama-3-70B / Llama-3-405B"]
+        HW3["Hardware Requirement: Multi-GPU Clusters (2x to 8x A100/H100 80GB)"]
+        PRO3["Pros: Highest benchmark scores, superior multi-step logic & planning"]
+        CON3["Cons: Prohibitive cloud costs ($2 - $15+/hr), queuing latency, impractical for multi-seed runs"]
+        VER3["Research Verdict: Impractical for individual academic labs running thousands of sample iterations"]
+    end
+
+    T1 ==>|"Scale up to robust reasoning"| T2
+    T2 ==>|"Diminishing returns / Extreme hardware cost"| T3
 ```
 
 ### 5.1 Limitations of Sub-3B Models (1B – 3B)
@@ -389,6 +584,22 @@ $$\text{Total Empirical Budget} \approx \mathbf{60\text{ Million tokens}}$$
 ---
 
 ## 7. Comparative Technical Matrix
+
+```mermaid
+flowchart TD
+    subgraph CLOSED["Commercial Closed APIs (e.g., GPT-4o, Claude 3.5 Sonnet)"]
+        direction TB
+        C_IN["Prompt Input"] --> C_BLACK["Proprietary Black Box Cloud Server<br/>• Secret Weights & Dynamic MoE Routing<br/>• Silent Endpoint Updates (Model Drift)"]
+        C_BLACK --> C_OUT["Plain Text Output String<br/>❌ Truncated Top-5 Logprobs only<br/>❌ Hidden states and attention maps completely hidden<br/>❌ Arbitrary refusal triggers on controversial / adversarial prompts<br/>❌ Prohibitive API bills for large sample benchmarks ($100s - $1,000s)"]
+    end
+
+    subgraph OPEN["Open-Weights 8B Research Pipeline (Meta-Llama-3-8B-Instruct)"]
+        direction TB
+        O_IN["Prompt Input"] --> O_WHITE["Inspected Local / Colab GPU Memory<br/>• Immutable Checkpoint with Cryptographic SHA-256 Hash<br/>• Bitwise Determinism via Fixed PyTorch Seed"]
+        O_WHITE --> O_OUT["Full White-Box Research Capabilities:<br/>✅ Complete 128,256-dimensional logit and probability distribution<br/>✅ Hidden activations accessible across all 32 transformer layers<br/>✅ Complete attention weight matrices for mechanistic interpretability<br/>✅ Full control over system prompts with zero censorship refusals<br/>✅ 100% Free execution on Google Colab T4 / Local GPU"]
+    end
+```
+
 
 | Dimension | Closed Commercial APIs (e.g., GPT-4o) | Open-Weights 8B (e.g., Llama-3-8B) |
 | :--- | :--- | :--- |
