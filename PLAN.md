@@ -11,16 +11,21 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 
 ## 📍 Phase 0: Conceptual Grounding (His Exact Technical Vocabulary)
 *Before running code, master the terminology used in his lab so you can speak his language:*
-- **Topic 0.1: Why 8B Parameters (Llama-3-8B)?**
-  - What are weights, parameters, and tokens?
-  - Why his lab avoids closed APIs (GPT-4) for generating 4,200+ samples: cost, lack of reproducible logits/seeds, and API rate limits.
-- **Topic 0.2: Hardware & VRAM Bottlenecks (Google Colab T4)**
-  - Why an 8B model needs ~16 GB VRAM in standard FP16 precision.
-  - How **4-bit NormalFloat Quantization (`bitsandbytes`)** compresses the model down to ~5.5 GB VRAM, fitting safely on a free Colab T4 GPU (16 GB) without OOM crashes.
-- **Topic 0.3: The Senior's Core Research Problem (WSDM '26 & TCSS '26)**
+- **Topic 0.1: Why 8B Parameters (Llama-3-8B)?** ✅ *(Completed)*
+  - Documented in: **[topic_0.1_why_8b_parameters.md](./notes/phase_0/topic_0.1_why_8b_parameters.md)**
+  - Tokens, vocabularies (tiktoken 128k), linear algebra, 32-layer transformer anatomy, 8.03B parameter audit, GQA, SwiGLU, and Chinchilla over-training.
+  - Closed API limitations: why empirical NLP research requires open-weights access for reproducible seeds, logits, and zero-cost scaling (4,200+ samples).
+- **Topic 0.2: Hardware & VRAM Bottlenecks & Practical Quantization** ✅ *(Completed)*
+  - Documented in: **[topic_0.2_bitsandbytes_vram_cheatsheet.md](./notes/phase_0/topic_0.2_bitsandbytes_vram_cheatsheet.md)**
+  - Mathematical VRAM audit (FP32 vs FP16 vs INT8 vs NF4) and Colab T4 15.8 GB ceiling.
+  - Python `BitsAndBytesConfig` implementation (`load_in_4bit`, `bnb_4bit_quant_type="nf4"`, `bnb_4bit_use_double_quant=True`, `bnb_4bit_compute_dtype=torch.float16`).
+  - Mechanics of on-the-fly Tensor Core dequantization and programmatic VRAM tracking (`torch.cuda.memory_allocated()`).
+- **Topic 0.3: The Senior's Core Research Problem (WSDM '26 & TCSS '26)** ⏳ *(In Progress)*
   - How modern fake news detectors work: they analyze both the **news headline** AND the **user comments** below it.
   - What an **adversarial comment** is: an AI-generated comment disguised as an ordinary social media response that tricks a fake news classifier into believing a false story.
   - The role of **InstructNet**: classifying and enforcing strict instruction constraints on generated text.
+  - The experimental bridge to Phase 1 and Phase 2.
+
 
 ---
 

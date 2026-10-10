@@ -54,7 +54,47 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 
 ---
 
-### 5. Open Questions & Next Actions for Day 2
-- [ ] Create a Hugging Face account and request access to the gated `meta-llama/Meta-Llama-3-8B-Instruct` model.
-- [ ] Open a fresh Google Colab notebook and run the initial GPU verification (`!nvidia-smi`).
-- [ ] Write the Python script to load the model in 4-bit and run my first test generation.
+### 5. Completed Actions & Transition to Day 2
+- [x] Explored and documented foundational linear algebra, tokens, parameters, and 8B architecture.
+- [x] Analyzed VRAM constraints, precision formats (FP16 vs NF4), and GPU memory math.
+
+---
+
+## 📅 Day 2: October 8, 2026 — Deep Architecture Audit & Practical Quantization Mechanics
+
+### 1. What I Set Out To Do Today
+- Fully complete **Topic 0.1** by mastering Transformer layer mechanics (Self-Attention, Grouped-Query Attention, SwiGLU MLP, and W_O output projection).
+- Resolve all mathematical and dimensional questions (why 4096 x 4096 vs 4096 x 1024, head dimension 128, variance scaling 1/√128).
+- Streamline **Topic 0.2** into an actionable Python cheat-sheet for `BitsAndBytesConfig` before running Google Colab.
+
+---
+
+### 2. Core Concepts Mastered Today
+- **Multi-Head Projection Geometry**:
+  - Input token vectors of 4,096 dimensions.
+  - Query projection W_Q (4096 x 4096): 32 heads × 128 dimensions.
+  - Key/Value projections W_K, W_V (4096 x 1024): 8 heads × 128 dimensions via Grouped-Query Attention (GQA), saving 75% of KV-cache VRAM.
+  - Output projection W_O (4096 x 4096): synthesizes clues across all 32 heads into a unified residual update.
+- **Attention Mechanics**:
+  - Scaling factor 1/√128 stabilizes variance from 128 down to 1.0, preventing vanishing gradients in Softmax.
+  - Causal masking (M = -∞ for future tokens) guarantees 0% attention to future tokens.
+  - Softmax normalizes scores into probability weights that sum to 1.0.
+  - Value aggregation computes the convex combination of semantic vectors.
+- **Practical 4-bit Quantization (Topic 0.2)**:
+  - `BitsAndBytesConfig` mechanics: `load_in_4bit=True`, `bnb_4bit_quant_type="nf4"`, `bnb_4bit_use_double_quant=True`.
+  - Core hardware principle: Weights are **stored in 4-bit** in VRAM (~5.5 GB), but **computed in 16-bit** inside Tensor Cores via on-the-fly dequantization.
+  - Programmatic VRAM tracking using `torch.cuda.memory_allocated()` and `torch.cuda.memory_reserved()`.
+
+---
+
+### 3. What Was Built in the Repository Today
+1. **[topic_0.1_why_8b_parameters.md](./notes/phase_0/topic_0.1_why_8b_parameters.md)**: Exhaustive 680-line theoretical foundation covering tokens, linear algebra, 8B parameter audit, and VRAM memory math.
+2. **[topic_0.2_bitsandbytes_vram_cheatsheet.md](./notes/phase_0/topic_0.2_bitsandbytes_vram_cheatsheet.md)**: Production-ready Colab loading script, BitsAndBytes configuration breakdown, and GPU VRAM telemetry helpers.
+3. **[AGENTS.md](./AGENTS.md)**: Workspace formatting standard enforcing clean, readable Unicode math notation.
+
+---
+
+### 4. Next Action
+- [ ] Complete **Topic 0.3**: Deep dive into Md Shoaib Ahmed's core research problem (WSDM '26 & TCSS '26) on multimodal fake news detectors and XAI-guided adversarial comment generation.
+- [ ] Transition to **Phase 1**: Execute Google Colab notebook deployment with Llama-3-8B in 4-bit.
+
