@@ -20,7 +20,8 @@ Progress from zero ML experience to executing an empirical applied LLM project t
   - Mathematical VRAM audit (FP32 vs FP16 vs INT8 vs NF4) and Colab T4 15.8 GB ceiling.
   - Python `BitsAndBytesConfig` implementation (`load_in_4bit`, `bnb_4bit_quant_type="nf4"`, `bnb_4bit_use_double_quant=True`, `bnb_4bit_compute_dtype=torch.float16`).
   - Mechanics of on-the-fly Tensor Core dequantization and programmatic VRAM tracking (`torch.cuda.memory_allocated()`).
-- **Topic 0.3: The Senior's Core Research Problem (WSDM '26 & TCSS '26)** ⏳ *(In Progress)*
+- **Topic 0.3: The Senior's Core Research Problem (WSDM '26 & TCSS '26)** ✅ *(Completed)*
+  - Documented in: **[topic_0.3_adversarial_comments_and_detectors.md](./notes/phase_0/topic_0.3_adversarial_comments_and_detectors.md)**
   - How modern fake news detectors work: they analyze both the **news headline** AND the **user comments** below it.
   - What an **adversarial comment** is: an AI-generated comment disguised as an ordinary social media response that tricks a fake news classifier into believing a false story.
   - The role of **InstructNet**: classifying and enforcing strict instruction constraints on generated text.

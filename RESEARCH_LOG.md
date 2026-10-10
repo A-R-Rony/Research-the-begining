@@ -95,6 +95,40 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 ---
 
 ### 4. Next Action
-- [ ] Complete **Topic 0.3**: Deep dive into Md Shoaib Ahmed's core research problem (WSDM '26 & TCSS '26) on multimodal fake news detectors and XAI-guided adversarial comment generation.
+- [x] Complete **Topic 0.3**: Deep dive into Md Shoaib Ahmed's core research problem (WSDM '26 & TCSS '26) on multimodal fake news detectors and XAI-guided adversarial comment generation.
 - [ ] Transition to **Phase 1**: Execute Google Colab notebook deployment with Llama-3-8B in 4-bit.
+
+---
+
+## 📅 Day 3: October 10, 2026 — Senior's Research Problem (WSDM '26, TCSS '26, InstructNet) & Model Selection
+
+### 1. What Was Tackled Today
+- Evaluated model choice between **Llama-3-8B** and **Qwen-2.5 (3B/4B)**:
+  - Affirmed Llama-3-8B as the mandatory primary model matching the senior's explicit hardware and parameter challenge.
+- Mastered and documented **Topic 0.3**:
+  - The architecture of modern social-context fake news detectors (Headline H + User Comments C).
+  - The mechanics of adversarial comment attacks (flipping veracity predictions).
+  - How Explainable AI (SHAP, LIME, Attention feature attribution) guides LLM generation to bypass classifiers.
+  - The role of **InstructNet** in multi-label instruction adherence and automated persona evaluation.
+
+### 2. Concepts Understood
+- **Multimodal / Social-Context Detection**:
+  - Traditional text-only classifiers fail against journalistic-style fake headlines.
+  - Social detectors predict P(Fake | H, C) by aggregating human user reactions beneath the headline. Human skepticism acts as a primary feature.
+- **The Adversarial Comment Attack Surface (WSDM '26 & TCSS '26)**:
+  - Malicious actors deploy generative LLMs to synthesize authentic-looking comments supporting false claims.
+  - Flooding threads with supportive comments shifts classifier probabilities, flipping predictions from Fake to Real.
+  - Attack efficiency is quantified using Attack Success Rate (ASR).
+- **XAI Guidance in Prompting**:
+  - Rather than generic cheerleading, attackers extract high-attribution tokens and tones using XAI tools, then condition LLM system prompts to seamlessly integrate those features.
+- **InstructNet Integration**:
+  - Classifies instructions across multi-label taxonomies to measure and enforce strict constraint adherence across thousands of synthetic generation samples.
+
+### 3. Artifacts / Code Built
+1. **[topic_0.3_adversarial_comments_and_detectors.md](./notes/phase_0/topic_0.3_adversarial_comments_and_detectors.md)**: Exhaustive breakdown of fake news detectors, adversarial comment attacks, XAI-guided prompting, InstructNet, and defenses.
+2. **[PLAN.md](./PLAN.md)**: Updated Phase 0 status to 100% completed across Topics 0.1, 0.2, and 0.3.
+
+### 4. Next Day's Focus / Open Questions
+- Transition to **Phase 1**: Open Google Colab, verify NVIDIA T4 GPU, authenticate Hugging Face token, and mount `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision.
+- Run baseline prompt inference and record live VRAM consumption.
 
