@@ -22,6 +22,9 @@ This repository directly prepares for collaborative research with **Md Shoaib Ah
 6. **Phase 2 Research Experiment**:
    - **[notes/phase_2/phase_2_experiment_guide.md](./notes/phase_2/phase_2_experiment_guide.md)**: Research guide for dual-persona adversarial comment generation and JSON instruction adherence.
    - **[notebooks/phase_2_adversarial_comments.ipynb](./notebooks/phase_2_adversarial_comments.ipynb)**: Executable Google Colab research experiment notebook.
+7. **Domain Knowledge & Tooling Guides**:
+   - **[GLOSSARY.md](./GLOSSARY.md)**: Canonical definitions for LLM research, runtime state, and tensor concepts.
+   - **[notes/tooling/README.md](./notes/tooling/README.md)**: Deep dive tooling stack guide (NumPy, PyTorch, Transformers, Pandas) tailored for C# and TypeScript engineers.
 
 ---
 

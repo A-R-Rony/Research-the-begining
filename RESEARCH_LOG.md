@@ -181,5 +181,21 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 ### 3. Immediate Next Step
 - Upload `phase_2_adversarial_comments.ipynb` to Google Colab with T4 GPU runtime, execute Cells 1 through 8, and record the experimental metrics and generated comments.
 
+---
+
+## 📅 Day 4 (Part III): October 11, 2026 — Tooling Foundations & Domain Modeling
+
+### 1. Architectural Alignment
+- Clarified interactive Jupyter execution mechanics (client-server architecture, persistent IPython Kernel state, global namespace in memory).
+- Mapped deep learning research tooling to software engineering concepts for ASP.NET Core (C#) and Angular (TypeScript/JavaScript).
+
+### 2. Artifacts Produced
+1. **[GLOSSARY.md](./GLOSSARY.md)**: Canonical domain definitions establishing strict terminology (Tensor, Token, Logits, Attention Matrix, Forward Pass).
+2. **[notes/tooling/README.md](./notes/tooling/README.md)**: Index and execution sequence roadmap for the 4-pillar data stack.
+3. **[notes/tooling/numpy_essentials.md](./notes/tooling/numpy_essentials.md)**: Contiguous memory buffers, slicing, broadcasting, and cosine similarity.
+4. **[notes/tooling/pytorch_for_llms.md](./notes/tooling/pytorch_for_llms.md)**: Device placement (`cuda`), 3D tensor shapes `[Batch, SeqLen, HiddenDim]`, `torch.no_grad()`, and attention matrix extraction.
+5. **[notes/tooling/transformers_hf.md](./notes/tooling/transformers_hf.md)**: Tokenizer vs. Model separation, forward pass inspection vs. autoregressive generation.
+6. **[notes/tooling/pandas_for_experiments.md](./notes/tooling/pandas_for_experiments.md)**: In-memory table queries, adversarial prompt tracking, and LINQ-equivalent operations.
+
 
 
