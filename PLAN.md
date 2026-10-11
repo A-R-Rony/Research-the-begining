@@ -30,19 +30,19 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 
 ---
 
-## 📍 Phase 1: Operational Milestone — Running Llama-3-8B on Google Colab 🔄 *(In Progress)*
+## 📍 Phase 1: Operational Milestone — Running Llama-3-8B on Google Colab ✅ *(Completed)*
 *The baseline engineering test he asked you to complete:*
 - **Guide**: **[notes/phase_1/phase_1_colab_guide.md](./notes/phase_1/phase_1_colab_guide.md)**
 - **Runnable Notebook**: **[notebooks/phase_1_llama3_colab.ipynb](./notebooks/phase_1_llama3_colab.ipynb)**
-- **Step 1.1**: Open Google Colab and mount the free **NVIDIA T4 GPU** runtime.
-- **Step 1.2**: Verify GPU health with `!nvidia-smi` and configure your Hugging Face authentication token (`huggingface_hub`).
-- **Step 1.3**: Load `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit precision (`BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4")`).
-- **Step 1.4**: Write a modular generation function utilizing Llama-3's official chat template (`apply_chat_template`).
-- **Step 1.5**: Track GPU VRAM before and after generation (`torch.cuda.memory_allocated()`).
+- **Step 1.1**: Open Google Colab and mount the free **NVIDIA T4 GPU** runtime. ✅
+- **Step 1.2**: Verify GPU health with `!nvidia-smi` and configure your Hugging Face authentication token (`huggingface_hub`). ✅
+- **Step 1.3**: Load `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit precision (`BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4")`). ✅
+- **Step 1.4**: Write a modular generation function utilizing Llama-3's official chat template (`apply_chat_template`). ✅
+- **Step 1.5**: Track GPU VRAM before and after generation (`torch.cuda.memory_allocated()`). ✅
 
 ---
 
-## 📍 Phase 2: The Aligned Research Experiment (The Senior's Problem Space)
+## 📍 Phase 2: The Aligned Research Experiment (The Senior's Problem Space) 🔄 *(Next Focus)*
 *Conducting the exact experiment that will impress him:*
 - **Dataset Selection**: Use a small subset (e.g. 20–50 samples) from a standard open fake news benchmark (e.g. **LIAR** or **PolitiFact** via Hugging Face `datasets`).
 - **Experiment 2.1: Controlled Instruction Following (InstructNet theme)**

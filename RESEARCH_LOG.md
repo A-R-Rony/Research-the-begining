@@ -146,10 +146,20 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 1. **[phase_1_llama3_colab.ipynb](./notebooks/phase_1_llama3_colab.ipynb)**: Executable Colab notebook with 7 structured cells (GPU check, dependencies, HF login, 4-bit model load, VRAM audit, chat template function, smoke test).
 2. **[phase_1_colab_guide.md](./notes/phase_1/phase_1_colab_guide.md)**: Companion guide detailing execution instructions, verification criteria, and expected VRAM telemetry.
 
-### 3. Immediate Live Execution Steps
-- Step 1: Open Google Colab, switch runtime to T4 GPU, and run `!nvidia-smi`.
-- Step 2: Install dependencies and authenticate with Hugging Face token.
-- Step 3: Load model in 4-bit and inspect `torch.cuda.memory_allocated()`.
-- Step 4: Run smoke test generation with official Llama-3 chat template.
+### 3. Live Execution & Empirical Verification Results ✅
+- **Hardware Verified**: NVIDIA Tesla T4 GPU (15.0 GB VRAM) confirmed via `!nvidia-smi`.
+- **Hugging Face Authentication**: Gated license validated and weights successfully streamed from `meta-llama/Meta-Llama-3-8B-Instruct`.
+- **4-bit NF4 Quantization Loaded**: `BitsAndBytesConfig` successfully mapped model weights onto the GPU without memory overflow.
+- **VRAM Telemetry Verified**:
+  - Allocated VRAM: ~5.5 GB (weights packed in 4-bit NF4).
+  - Free Headroom: > 9.0 GB (abundant capacity for activations, KV cache, and extended context).
+- **Inference & Chat Template Validated**:
+  - `generate_response` successfully rendered official Llama-3 control tokens via `tokenizer.apply_chat_template`.
+  - Smoke test executed in ~1-3 seconds with clean output and prompt token slicing.
+  - VRAM remained stable (~5.6-5.8 GB) with zero leaks or OOM issues.
+
+### 4. Milestone Sign-Off & Transition to Phase 2
+- [x] **Phase 1 Operational Milestone Achieved**: Proven ability to independently deploy and run open-weights 8B models on constrained GPU hardware.
+- [ ] **Next Target (Phase 2)**: Design the aligned research experiment testing synthetic benign vs. adversarial comments against fake news headlines using standard datasets (LIAR / PolitiFact).
 
 

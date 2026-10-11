@@ -92,7 +92,7 @@ Expected Output:
 Install modern versions of Hugging Face core libraries, 4-bit quantization kernel, and hardware acceleration:
 
 ```python
-!pip install -q -U torch transformers bitsandbytes accelerate huggingface_hub
+!pip install -q -U torch torchvision transformers bitsandbytes accelerate huggingface_hub
 ```
 
 ---
@@ -219,13 +219,13 @@ print(f"\nVRAM After Inference: {current_vram:.2f} GB")
 
 ---
 
-## Validation Checklist for Phase 1 Sign-Off
-- [ ] Colab T4 GPU verified via `!nvidia-smi`.
-- [ ] Dependencies installed without version conflicts.
-- [ ] Hugging Face authentication successful with gated access verified.
-- [ ] Llama-3-8B loaded using `BitsAndBytesConfig` NF4.
-- [ ] VRAM allocated verified at ~5.5 GB (well below 15 GB ceiling).
-- [ ] Generation runs in 1-3 seconds and adheres to chat template without hallucinations or truncation.
+## Validation Checklist for Phase 1 Sign-Off ✅
+- [x] Colab T4 GPU verified via `!nvidia-smi`.
+- [x] Dependencies installed without version conflicts.
+- [x] Hugging Face authentication successful with gated access verified.
+- [x] Llama-3-8B loaded using `BitsAndBytesConfig` NF4.
+- [x] VRAM allocated verified at ~5.5 GB (well below 15 GB ceiling).
+- [x] Generation runs in 1-3 seconds and adheres to chat template without hallucinations or truncation.
 
 ---
 
