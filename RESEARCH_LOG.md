@@ -160,6 +160,26 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 
 ### 4. Milestone Sign-Off & Transition to Phase 2
 - [x] **Phase 1 Operational Milestone Achieved**: Proven ability to independently deploy and run open-weights 8B models on constrained GPU hardware.
-- [ ] **Next Target (Phase 2)**: Design the aligned research experiment testing synthetic benign vs. adversarial comments against fake news headlines using standard datasets (LIAR / PolitiFact).
+- [x] **Phase 2 Research Experiment Initialized**: Companion guide and executable notebook built and aligned with WSDM '26 and InstructNet research questions.
+
+---
+
+## 📅 Day 4 (Part II): October 11, 2026 — Phase 2: Design of Adversarial Comment Experiment & Instruction Compliance
+
+### 1. Research Objectives Formulated
+- Replicate the experimental setting of Md Shoaib Ahmed's research:
+  - **Experiment 2.1 (InstructNet alignment)**: Enforce structured JSON verification constraints on claim evaluation and measure parse compliance rate.
+  - **Experiment 2.2 (WSDM '26 alignment)**: Synthesize dual-persona social media comments:
+    - **Persona A (Benign Fact-Checker)**: Skeptical, evidence-demanding comments.
+    - **Persona B (Adversarial Believer)**: Persuasive, authentic-sounding comments defending false claims without triggering toxicity or spam filters.
+  - Temperature study: evaluate deterministic stability (0.2) versus colloquial lexical diversity (0.7).
+
+### 2. Artifacts Built
+1. **[phase_2_experiment_guide.md](./notes/phase_2/phase_2_experiment_guide.md)**: Conceptual guide detailing the social-context detector attack surface, JSON schema constraints, persona prompting recipes, and evaluation criteria.
+2. **[phase_2_adversarial_comments.ipynb](./notebooks/phase_2_adversarial_comments.ipynb)**: Executable Google Colab research notebook with 8 cells spanning benchmark data ingestion, JSON adherence evaluation, dual-persona generation, and CSV dataset export.
+
+### 3. Immediate Next Step
+- Upload `phase_2_adversarial_comments.ipynb` to Google Colab with T4 GPU runtime, execute Cells 1 through 8, and record the experimental metrics and generated comments.
+
 
 

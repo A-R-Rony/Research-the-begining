@@ -19,6 +19,9 @@ This repository directly prepares for collaborative research with **Md Shoaib Ah
 5. **Phase 1 Deployment**:
    - **[notes/phase_1/phase_1_colab_guide.md](./notes/phase_1/phase_1_colab_guide.md)**: Step-by-step Colab T4 deployment and VRAM guide.
    - **[notebooks/phase_1_llama3_colab.ipynb](./notebooks/phase_1_llama3_colab.ipynb)**: Executable Google Colab notebook for 4-bit Llama-3-8B.
+6. **Phase 2 Research Experiment**:
+   - **[notes/phase_2/phase_2_experiment_guide.md](./notes/phase_2/phase_2_experiment_guide.md)**: Research guide for dual-persona adversarial comment generation and JSON instruction adherence.
+   - **[notebooks/phase_2_adversarial_comments.ipynb](./notebooks/phase_2_adversarial_comments.ipynb)**: Executable Google Colab research experiment notebook.
 
 ---
 

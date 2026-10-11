@@ -42,9 +42,11 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 
 ---
 
-## 📍 Phase 2: The Aligned Research Experiment (The Senior's Problem Space) 🔄 *(Next Focus)*
+## 📍 Phase 2: The Aligned Research Experiment (The Senior's Problem Space) 🔄 *(In Progress)*
 *Conducting the exact experiment that will impress him:*
-- **Dataset Selection**: Use a small subset (e.g. 20–50 samples) from a standard open fake news benchmark (e.g. **LIAR** or **PolitiFact** via Hugging Face `datasets`).
+- **Guide**: **[notes/phase_2/phase_2_experiment_guide.md](./notes/phase_2/phase_2_experiment_guide.md)**
+- **Runnable Notebook**: **[notebooks/phase_2_adversarial_comments.ipynb](./notebooks/phase_2_adversarial_comments.ipynb)**
+- **Dataset Selection**: Curated 20-sample balanced benchmark from **PolitiFact** & **LIAR** (10 False, 10 True).
 - **Experiment 2.1: Controlled Instruction Following (InstructNet theme)**
   - Prompt Llama-3-8B to classify the claim and output strictly formatted JSON metadata (claim veracity, sentiment, confidence).
   - Calculate format adherence rate.
