@@ -197,5 +197,30 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 5. **[notes/tooling/transformers_hf.md](./notes/tooling/transformers_hf.md)**: Tokenizer vs. Model separation, forward pass inspection vs. autoregressive generation.
 6. **[notes/tooling/pandas_for_experiments.md](./notes/tooling/pandas_for_experiments.md)**: In-memory table queries, adversarial prompt tracking, and LINQ-equivalent operations.
 
+---
 
+## 📅 Day 4 (Part IV): October 11, 2026 — Phase 2: Live Execution & Empirical Results ✅
 
+### 1. Experiment 2.1 Diagnostics: JSON Instruction Adherence
+- **Finding**: Llama-3-8B adhered strictly to negative constraints (zero conversational preamble, zero markdown fences, exact JSON schema keys).
+- **Failure Mode Resolved**: The initial 0.0% parse rate was caused by token truncation (`max_new_tokens=150`). The model reached the token limit immediately after the closing quote of the `reasoning` field, omitting the terminal `}`.
+- **Remediation**: Expanded token budget to 220 tokens and added defensive bracket closure before parsing.
+
+### 2. Experiment 2.2 Execution: Dual-Persona Synthetic Comments (WSDM '26 Attack Surface)
+- **Scale**: Generated 40 synthetic comments across 10 debunked claims spanning Health, Environment, Economy, Governance, and Technology.
+- **Quantitative Metrics (Mean Word Count by Persona & Temperature)**:
+  - **Persona A (Skeptic) at Temp 0.2**: 43.1 words
+  - **Persona A (Skeptic) at Temp 0.7**: 51.4 words
+  - **Persona B (Adversarial Believer) at Temp 0.2**: 66.3 words
+  - **Persona B (Adversarial Believer) at Temp 0.7**: 72.6 words
+- **Key Empirical Observations**:
+  1. **Asymmetry in Length**: Adversarial believer comments are ~54% longer than skeptical comments because deceptive defense requires fabricating subjective context and relatable social consensus.
+  2. **Temperature Expansion**: Higher temperature (0.7) reliably increased lexical diversity and expanded word count (+19% for skeptics, +10% for believers).
+  3. **Stealth**: Persona B comments successfully avoided overt spam, slurs, or aggressive tokens, producing authentic-sounding social proof capable of manipulating social-context detectors.
+
+### 3. Data Artifact Created
+- **`phase_2_experimental_results.csv`**: Complete 40-sample dataset exported with claim IDs, topics, personas, temperatures, generated comments, and word count metrics.
+
+### 4. Milestone Sign-Off & Transition to Phase 3
+- [x] **Phase 2 Complete**: Successfully executed structured JSON adherence and dual-persona adversarial comment synthesis on open-weights Llama-3-8B.
+- [ ] **Phase 3 Ready**: Build and evaluate detection mechanisms (social-context misinformation detectors) against the synthesized adversarial comments.

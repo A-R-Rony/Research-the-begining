@@ -42,19 +42,20 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 
 ---
 
-## 📍 Phase 2: The Aligned Research Experiment (The Senior's Problem Space) 🔄 *(In Progress)*
+## 📍 Phase 2: The Aligned Research Experiment (The Senior's Problem Space) ✅ *(Completed)*
 *Conducting the exact experiment that will impress him:*
 - **Guide**: **[notes/phase_2/phase_2_experiment_guide.md](./notes/phase_2/phase_2_experiment_guide.md)**
 - **Runnable Notebook**: **[notebooks/phase_2_adversarial_comments.ipynb](./notebooks/phase_2_adversarial_comments.ipynb)**
-- **Dataset Selection**: Curated 20-sample balanced benchmark from **PolitiFact** & **LIAR** (10 False, 10 True).
-- **Experiment 2.1: Controlled Instruction Following (InstructNet theme)**
+- **Dataset Selection**: Curated 20-sample balanced benchmark from **PolitiFact** & **LIAR** (10 False, 10 True). ✅
+- **Experiment 2.1: Controlled Instruction Following (InstructNet theme)** ✅
   - Prompt Llama-3-8B to classify the claim and output strictly formatted JSON metadata (claim veracity, sentiment, confidence).
-  - Calculate format adherence rate.
-- **Experiment 2.2: Synthetic Adversarial Comment Generation (WSDM '26 theme)**
+  - Calculate format adherence rate (diagnosed token truncation and refined schema parsing).
+- **Experiment 2.2: Synthetic Adversarial Comment Generation (WSDM '26 theme)** ✅
   - For each false news headline, prompt Llama-3-8B under two distinct personas:
     1. **Persona A (Skeptical / Benign Fact-Checker)**: Generates a comment questioning the source and requesting evidence.
     2. **Persona B (Adversarial / Persuasive Believer)**: Generates a subtle, convincing comment defending the false claim without using overt spammy words.
   - Test temperature variations (`temperature=0.2` vs `temperature=0.7`) to see diversity vs. consistency.
+- **Exported Dataset**: Generated 40 empirical comments saved to `phase_2_experimental_results.csv`. ✅
 
 ---
 
