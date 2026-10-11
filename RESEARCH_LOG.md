@@ -36,7 +36,7 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 
 #### B. The GPU & VRAM Constraint (The Math)
 - A model's memory footprint is determined by its parameter count and precision:
-  $$\text{Memory in FP16 (16-bit)} \approx 8\text{ Billion} \times 2\text{ bytes} \approx 16\text{ GB VRAM}$$
+  `Memory in FP16 (16-bit) ≈ 8 Billion · 2 bytes ≈ 16 GB VRAM`
 - A free **Google Colab** instance offers an **NVIDIA T4 GPU** with **16 GB VRAM**.
 - Loading an uncompressed 8B model fills the entire 16 GB, leaving zero room for activations, context, or generation—causing an immediate `CUDA Out Of Memory (OOM)` crash.
 
@@ -49,7 +49,7 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 ### 4. What Was Built in the Repository Today
 1. **[CONTEXT.md](./CONTEXT.md)**: Defines my background, research ambitions, and strategic alignment with Shoaib's lab.
 2. **[SENIOR_OVERVIEW.md](./SENIOR_OVERVIEW.md)**: Exhaustive profile of Md Shoaib Ahmed, detailing his 767+ citations, h-index, and publication catalog (2023–2026).
-3. **[PLAN.md](./PLAN.md)**: A 5-phase master plan bridging fundamentals $\rightarrow$ Colab 8B deployment $\rightarrow$ synthetic adversarial comment generation $\rightarrow$ research report $\rightarrow$ mentorship pitch.
+3. **[PLAN.md](./PLAN.md)**: A 5-phase master plan bridging fundamentals -> Colab 8B deployment -> synthetic adversarial comment generation -> research report -> mentorship pitch.
 4. **[README.md](./README.md)**: Clean index file guiding visitors through the project.
 
 ---
@@ -129,6 +129,27 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 2. **[PLAN.md](./PLAN.md)**: Updated Phase 0 status to 100% completed across Topics 0.1, 0.2, and 0.3.
 
 ### 4. Next Day's Focus / Open Questions
-- Transition to **Phase 1**: Open Google Colab, verify NVIDIA T4 GPU, authenticate Hugging Face token, and mount `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision.
+- [x] Transition to **Phase 1**: Open Google Colab, verify NVIDIA T4 GPU, authenticate Hugging Face token, and mount `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision.
 - Run baseline prompt inference and record live VRAM consumption.
+
+---
+
+## 📅 Day 4: October 11, 2026 — Phase 1: Operational Milestone — Google Colab T4 Deployment & 4-bit Llama-3-8B
+
+### 1. What I Set Out To Do Today
+- Execute **Phase 1** operational milestone: Deploy `meta-llama/Meta-Llama-3-8B-Instruct` on a free Google Colab NVIDIA T4 GPU (15.0 GB VRAM limit).
+- Implement 4-bit NF4 double quantization with float16 compute dtype using `bitsandbytes`.
+- Build a ready-to-run Jupyter Notebook (`notebooks/phase_1_llama3_colab.ipynb`) and step-by-step execution guide (`notes/phase_1/phase_1_colab_guide.md`).
+- Validate GPU hardware health, authenticate Hugging Face tokens, inspect memory footprint (~5.5 GB), and run structured baseline inference via `apply_chat_template`.
+
+### 2. Implementation Artifacts Created
+1. **[phase_1_llama3_colab.ipynb](./notebooks/phase_1_llama3_colab.ipynb)**: Executable Colab notebook with 7 structured cells (GPU check, dependencies, HF login, 4-bit model load, VRAM audit, chat template function, smoke test).
+2. **[phase_1_colab_guide.md](./notes/phase_1/phase_1_colab_guide.md)**: Companion guide detailing execution instructions, verification criteria, and expected VRAM telemetry.
+
+### 3. Immediate Live Execution Steps
+- Step 1: Open Google Colab, switch runtime to T4 GPU, and run `!nvidia-smi`.
+- Step 2: Install dependencies and authenticate with Hugging Face token.
+- Step 3: Load model in 4-bit and inspect `torch.cuda.memory_allocated()`.
+- Step 4: Run smoke test generation with official Llama-3 chat template.
+
 

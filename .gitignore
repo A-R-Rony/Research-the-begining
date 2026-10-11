@@ -1,0 +1,47 @@
+# Secret environment variables & tokens (NEVER commit these)
+.env
+.env.*
+*.env
+Env/
+env/
+*.token
+*.key
+
+# Python Bytecode & Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Large Model Weights, Tensors & Cache (Colab / Hugging Face)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+checkpoints/
+hf_cache/
+cache/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

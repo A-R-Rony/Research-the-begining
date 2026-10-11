@@ -3,17 +3,20 @@
 ## 1. Executive Summary & Objective
 - **Target Mentorship**: Md Shoaib Ahmed (Ph.D. Researcher, Boise State University, Trustworthy AI Lab).
 - **Goal**: Run `meta-llama/Meta-Llama-3-8B-Instruct` on Google Colab under 4-bit NF4 quantization on an NVIDIA T4 GPU, then generate synthetic adversarial vs. benign comments on fake news headlines to evaluate detector robustness.
-- **Current Status**: Phase 0 (Conceptual Grounding) is 100% complete. Ready for hands-on execution.
+- **Current Status**: Phase 0 is 100% complete. Phase 1 (Operational Milestone: Google Colab T4 Deployment) is actively underway. Notebook and guide generated.
 
 ---
 
 ## 2. Core Repository Reference Files
+- **Phase 1 Implementation (Active)**:
+  - `notes/phase_1/phase_1_colab_guide.md` (Step-by-step Colab T4 execution and prerequisites guide).
+  - `notebooks/phase_1_llama3_colab.ipynb` (Ready-to-upload Jupyter notebook with all 7 cells).
 - **Phase 0 Notes**:
   - `notes/phase_0/topic_0.1_why_8b_parameters.md` (Architecture, 8B parameters, tokens, VRAM math).
   - `notes/phase_0/topic_0.2_bitsandbytes_vram_cheatsheet.md` (4-bit BitsAndBytesConfig, 5.5 GB VRAM footprint, Colab cells).
   - `notes/phase_0/topic_0.3_adversarial_comments_and_detectors.md` (Social detectors, XAI-guided attacks, InstructNet).
 - **Master Plan**: `PLAN.md` (Phases 0 through 4 detailed).
-- **Daily Journal**: `RESEARCH_LOG.md` (Updated through Day 3, October 10, 2026).
+- **Daily Journal**: `RESEARCH_LOG.md` (Updated through Day 4, October 11, 2026).
 - **Senior Background**: `CONTEXT.md` and `SENIOR_OVERVIEW.md`.
 
 ---
