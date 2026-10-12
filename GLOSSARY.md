@@ -41,5 +41,17 @@ A continuous, dense vector representation of a discrete categorical input token 
 _Avoid_: Feature vector, word vector, representation
 
 **Forward Pass**:
-The deterministic sequence of matrix transformations and layer operations that maps input token IDs to output logits without updating weights.
+The deeterministic sequenc of matrix transformations and layer operations that maps input token IDs to output logits without updating weights.
 _Avoid_: Inference pass, prediction run, model execution
+
+**Social-Context Detector**:
+A classification model that evaluates news veracity using both the primary claim text and associated social media discussion threads.
+_Avoid_: Comment filter, sentiment classifier, thread detector
+
+**Attack Success Rate (Flip Rate)**:
+The proportion of targeted classification instances where appending an adversarial context successfully alters the model prediction from true veracity to the attacker's desired label.
+_Avoid_: Error rate, deception rate, hack rate
+
+**Adversarial Perturbation (Textual)**:
+A strategically crafted textual sequence injected into a model's input context to manipulate its classification output while maintaining apparent naturalness to human readers.
+_Avoid_: Jailbreak prompt, spam, malicious noise

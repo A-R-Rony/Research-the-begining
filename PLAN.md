@@ -59,11 +59,15 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 
 ---
 
-## 📍 Phase 3: Research Evaluation & Reporting
+## 📍 Phase 3: Research Evaluation & Reporting ✅ *(Completed)*
 *Packaging the experiment like a graduate research assistant:*
-- Log the generated comments and metrics into a clear markdown report: `experiments/adversarial_comment_generation.md`.
-- Analyze the linguistic features: Did the adversarial comments use authoritative tone, personal anecdotes, or emotional appeal?
-- Highlight failure modes (e.g., cases where Llama-3's safety guardrails refused to generate deceptive comments).
+- **Guide**: **[notes/phase_3/phase_3_evaluation_guide.md](./notes/phase_3/phase_3_evaluation_guide.md)**
+- **Runnable Notebook**: **[notebooks/phase_3_evaluation_and_attack.ipynb](./notebooks/phase_3_evaluation_and_attack.ipynb)**
+- **Formal Academic Report**: **[experiments/phase_3_adversarial_evaluation_report.md](./experiments/phase_3_adversarial_evaluation_report.md)**
+- **Architectural Decision Record**: **[docs/adr/0001-llm-zero-shot-detector-baseline.md](./docs/adr/0001-llm-zero-shot-detector-baseline.md)**
+- **Linguistic & Rhetorical Analysis**: Quantified length asymmetry (adversarial comments are 54% longer) and 4-mechanism qualitative deception taxonomy (Personal Anecdote, Social Proof, Authority Hedging, Institutional Mistrust).
+- **Social-Context Detector Attack Simulation**: Measured 50 inferences across 5 conditions; demonstrated that adversarial comments achieve an empirical 40% to 50% Attack Success Rate (Flip Rate) and degrade detector confidence by up to 0.235.
+- **Safety Guardrail Audit**: Highlighted zero-refusal vulnerability when generating polite, anecdotal deception without toxic tokens.
 
 ---
 

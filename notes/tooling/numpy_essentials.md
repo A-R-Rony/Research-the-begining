@@ -61,19 +61,40 @@ print(mean_token_vector.shape)  # Output: (4, 8)
 ```
 
 ### 4. Cosine Similarity (Comparing Embeddings)
-To measure whether two text embeddings are semantically aligned:
 
+#### What is it and why do we need it?
+When an LLM processes text, it turns words or sentences into long lists of numbers called **Embeddings** (e.g., 4,096 numbers in Llama-3-8B).
+To check whether two sentences have similar meanings, we cannot use ordinary straight-line distance. A short sentence (*"Great film!"*) has smaller numbers than a long sentence (*"This motion picture was magnificent!"*), making their straight-line physical distance artificially large even though their semantic meaning is identical.
+
+Instead of measuring arrow length, **Cosine Similarity measures the angle (θ) between two arrows in space**:
+* **+1.0 (Angle = 0°)**: Identical meaning (arrows point in the exact same direction).
+* **0.0 (Angle = 90°)**: Unrelated topics (arrows are perpendicular / orthogonal).
+* **-1.0 (Angle = 180°)**: Exact opposite meaning (arrows point in reverse directions).
+
+#### Python Implementation & Line-by-Line Breakdown:
 ```python
+import numpy as np
+
 def cosine_similarity(u, v):
-    # dot(u, v) / (norm(u) * norm(v))
+    # 1. Dot product: Multiplies matching elements and adds them up.
+    # Measures directional overlap: (u₁ · v₁) + (u₂ · v₂) + ... + (uₙ · vₙ)
     dot_product = np.dot(u, v)
+
+    # 2. Vector Norms: Calculates the geometric length (magnitude) of each arrow.
+    # Formula: ||u|| = √(u₁² + u₂² + ... + uₙ²)
     norm_u = np.linalg.norm(u)
     norm_v = np.linalg.norm(v)
+
+    # 3. Normalization: Dividing by (norm_u · norm_v) cancels out the length of both arrows,
+    # leaving only the pure cosine of the angle between them.
     return dot_product / (norm_u * norm_v)
 
+# Example: Two semantically related word embeddings
 vec_a = np.array([0.2, 0.8, -0.5])
 vec_b = np.array([0.25, 0.75, -0.4])
-print("Similarity:", cosine_similarity(vec_a, vec_b))
+
+score = cosine_similarity(vec_a, vec_b)
+print("Similarity Score:", round(score, 4))  # Output: ~0.9946 (Extremely similar direction)
 ```
 
 ### 5. Bridging PyTorch and NumPy
