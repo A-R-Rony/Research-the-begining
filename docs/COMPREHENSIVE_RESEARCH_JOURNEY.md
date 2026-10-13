@@ -105,29 +105,15 @@ Evaluated all 10 claims across 5 conditions:
 
 The zero-shot 8B model was **not fooled**. This is itself a research finding worth discussing:
 
-1. **Pretraining memorization**: The 10 claims are globally famous conspiracies (vaccine tracking, Finland non-existence, etc.). Llama-3's 15T-token pretraining corpus has seen thousands of debunking articles for each. A single anonymous commenter cannot override that.
-
-2. **The detector recognized the deception**: The model's rationales explicitly called out the adversarial comments:
-   - F04: *"relies on anecdotal evidence and personal testimonials, which are not a reliable basis for medical claims"*
-   - F01: *"relies on anecdotal reports and speculation rather than credible sources"*
-   - F03: *"relies on speculation and interpretation of architectural features rather than concrete facts"*
-
-3. **Single comment vs. coordinated attack**: Published attacks (WSDM '26) inject multiple comments and target graph-based detectors (dEFEND, BiGCN) that weight social engagement patterns, not a single causal LLM prompted as an expert.
-
-4. **Safety guardrail blind spot**: Llama-3 had a **0% refusal rate** when generating polite adversarial comments. Its safety filters detect toxicity and hate speech but are blind to epistemic deception framed as personal testimony.
+1. **Famous claims**: These 10 conspiracies (vaccine tracking, Finland non-existence, etc.) are heavily debunked in Llama-3's training data — the model simply "knows" they're false.
+2. **Model called it out**: The detector's rationales explicitly flagged the adversarial comments as *"anecdotal evidence"*, *"speculation rather than credible sources"*, and *"personal testimonials, not a reliable basis."*
+3. **One comment isn't enough**: Published attacks (WSDM '26) use multiple coordinated comments against graph-based detectors (dEFEND, BiGCN) — not a single comment against a causal LLM.
+4. **Safety blind spot**: Despite this robustness, Llama-3 had a **0% refusal rate** when *generating* the adversarial comments — its safety filters catch toxicity but not polite deception.
 
 **Dataset**: [notebooks/phase_3_evaluation_results.csv](../notebooks/phase_3_evaluation_results.csv) (50 rows)  
 **Notebook**: [notebooks/phase_3_evaluation_and_attack.ipynb](../notebooks/phase_3_evaluation_and_attack.ipynb)  
 **Full Report**: [experiments/phase_3_adversarial_evaluation_report.md](../experiments/phase_3_adversarial_evaluation_report.md)
 
----
-
-## What I Can Contribute Next
-
-1. **Multi-comment cascade attacks**: Expand from 1 comment to 5-10 coordinated comments per claim to test whether volume breaks robustness.
-2. **Subtle/emerging claims**: Replace famous conspiracies with ambiguous, lesser-known rumors where pretraining memorization is weaker.
-3. **Graph-based detector benchmarking**: Test these adversarial comments against dEFEND, BiGCN, or SAFE instead of a causal LLM.
-4. **Dataset preprocessing & batch inference scripts**: Automate token alignment, balance LIAR/PolitiFact/GossipCop splits, and run parameter sweeps across Llama-3, Mistral, and Gemma.
 
 ---
 
