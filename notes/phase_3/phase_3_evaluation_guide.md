@@ -102,7 +102,7 @@ The evaluation pipeline automatically computes three quantitative metrics:
 
 ## 5. Google Colab Implementation Architecture
 
-As recorded in [ADR-0001](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/docs/adr/0001-llm-zero-shot-detector-baseline.md), we deploy `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision as our baseline social-context detector.
+As recorded in [ADR-0001](../../docs/adr/0001-llm-zero-shot-detector-baseline.md), we deploy `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision as our baseline social-context detector.
 
 ### 5.1 The 5-Condition Evaluation Matrix
 For each of the 10 debunked claims, the detector evaluates five distinct inputs (50 inferences total, ~80 seconds runtime):
@@ -140,7 +140,7 @@ Determine if the claim is TRUE or FALSE.<|eot_id|>
 
 ## 6. Colab Notebook Cell Walkthrough
 
-The notebook [notebooks/phase_3_evaluation_and_attack.ipynb](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notebooks) contains 8 modular cells:
+The notebook [notebooks/phase_3_evaluation_and_attack.ipynb](../../notebooks/phase_3_evaluation_and_attack.ipynb) contains 8 modular cells:
 
 1. **Cell 1: Hardware & Libraries**: Mount T4 GPU, verify memory, install `torch`, `transformers`, `bitsandbytes`, `accelerate`, and `seaborn`.
 2. **Cell 2: Hugging Face Authentication**: Secure token login for Llama-3 access.

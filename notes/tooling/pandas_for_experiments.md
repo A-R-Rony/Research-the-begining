@@ -19,7 +19,7 @@ Pandas (`pandas`) is the tabular data analysis and manipulation engine in Python
 
 ## 2. A Real Research Workflow: Tracking Adversarial Prompts
 
-In Phase 2 ([notebooks/phase_2_adversarial_comments.ipynb](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notebooks/phase_2_adversarial_comments.ipynb)), you evaluate how models react to adversarial comments. Here is the canonical pattern:
+In Phase 2 ([notebooks/phase_2_adversarial_comments.ipynb](../../notebooks/phase_2_adversarial_comments.ipynb)), you evaluate how models react to adversarial comments. Here is the canonical pattern:
 
 ### 1. Constructing the Experiment DataFrame
 

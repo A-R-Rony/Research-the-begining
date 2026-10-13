@@ -104,7 +104,7 @@ print("Predicted Token ID:", next_token_id)
 ```
 
 ### 6. Extracting Attention Tensors
-In safety and interpretability research (e.g., [notebooks/phase_2_adversarial_comments.ipynb](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notebooks/phase_2_adversarial_comments.ipynb)), you inspect how the model attends to tokens:
+In safety and interpretability research (e.g., [notebooks/phase_2_adversarial_comments.ipynb](../../notebooks/phase_2_adversarial_comments.ipynb)), you inspect how the model attends to tokens:
 
 ```python
 # Pass output_attentions=True in the forward pass

@@ -10,10 +10,10 @@ In LLM research (Phases 1 through 4), you do not need to memorize every API acro
 
 | Library | Primary Responsibility | C# / ASP.NET Core Analogy | Angular / JS Analogy |
 | :--- | :--- | :--- | :--- |
-| [NumPy](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/numpy_essentials.md) | CPU Vectorized array math & stats | Flat memory buffer / `Span<float>` + SIMD vector math | `Float32Array` / TypedArray with math helpers |
-| [PyTorch](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/pytorch_for_llms.md) | GPU Tensors, forward passes, attention weights | GPU worker compute + Entity Framework change tracking (`autograd`) | WebGPU compute buffers + reactive dependency graph |
-| [Transformers](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/transformers_hf.md) | Pretrained model loading & tokenization | Strongly-typed SDK client + JSON serializer/deserializer | HTTP Service + DTO serialization pipeline |
-| [Pandas](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/pandas_for_experiments.md) | Experiment tracking & benchmark tables | In-memory `DataTable` + LINQ queries (`Where`, `Select`, `GroupBy`) | RxJS state streams / in-memory grid store |
+| [NumPy](./numpy_essentials.md) | CPU Vectorized array math & stats | Flat memory buffer / `Span<float>` + SIMD vector math | `Float32Array` / TypedArray with math helpers |
+| [PyTorch](./pytorch_for_llms.md) | GPU Tensors, forward passes, attention weights | GPU worker compute + Entity Framework change tracking (`autograd`) | WebGPU compute buffers + reactive dependency graph |
+| [Transformers](./transformers_hf.md) | Pretrained model loading & tokenization | Strongly-typed SDK client + JSON serializer/deserializer | HTTP Service + DTO serialization pipeline |
+| [Pandas](./pandas_for_experiments.md) | Experiment tracking & benchmark tables | In-memory `DataTable` + LINQ queries (`Where`, `Select`, `GroupBy`) | RxJS state streams / in-memory grid store |
 
 ---
 
@@ -21,19 +21,19 @@ In LLM research (Phases 1 through 4), you do not need to memorize every API acro
 
 Follow this execution pipeline order:
 
-1. **[01. NumPy Essentials](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/numpy_essentials.md)**:
+1. **[01. NumPy Essentials](./numpy_essentials.md)**:
    * Mental Model: Contiguous memory buffers, shapes, axes, broadcasting.
    * What to look for: Converting PyTorch GPU tensors back to CPU arrays for plotting and cosine similarity.
 
-2. **[02. PyTorch for LLMs](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/pytorch_for_llms.md)**:
+2. **[02. PyTorch for LLMs](./pytorch_for_llms.md)**:
    * Mental Model: The hardware compute graph. Moving memory to `cuda`.
    * What to look for: Slicing 3D shapes `[Batch, SequenceLength, HiddenDim]`, extracting attention matrices, and using `torch.no_grad()` to freeze change-tracking during evaluation.
 
-3. **[03. Hugging Face Transformers](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/transformers_hf.md)**:
+3. **[03. Hugging Face Transformers](./transformers_hf.md)**:
    * Mental Model: The LLM pipeline.
    * What to look for: String to Token IDs mapping (`tokenizer`), forward pass inputs (`input_ids`, `attention_mask`), logits, and inspectable layer outputs (`output_attentions=True`).
 
-4. **[04. Pandas for Experiment Tracking](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/tooling/pandas_for_experiments.md)**:
+4. **[04. Pandas for Experiment Tracking](./pandas_for_experiments.md)**:
    * Mental Model: In-memory relational tables with LINQ-style querying.
    * What to look for: Storing 50 adversarial prompts, filtering jailbreak attempts, calculating mean safety scores by category, and exporting reports.
 

@@ -13,7 +13,7 @@
 
 Modern misinformation detection pipelines increasingly incorporate social context — aggregating user replies, discussions, and community commentary alongside headline text — based on the inductive premise that authentic online crowds naturally refute false claims while endorsing verified truths. This paper presents an empirical vulnerability analysis of this social-context attack surface. Utilizing `meta-llama/Meta-Llama-3-8B-Instruct` deployed in 4-bit NormalFloat4 (NF4) precision on consumer-grade GPU hardware, we evaluate 40 synthetic comments generated across 10 debunked claims spanning health, environmental science, macroeconomics, public governance, and technology. 
 
-We conduct a dual-faceted study: (1) a quantitative and rhetorical linguistic characterization of synthetic comments generated under contrasting personas (Benign Fact-Checker vs. Adversarial Believer) across varied decoding temperatures (0.2 vs. 0.7), and (2) an empirical attack simulation against an LLM-based social-context detector baseline ([ADR-0001](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/docs/adr/0001-llm-zero-shot-detector-baseline.md)). Our findings reveal a statistically significant length asymmetry (adversarial comments are 54% longer than skeptical comments), a 4-mechanism qualitative deception taxonomy dominated by anecdotal fabrication and consensus illusions, and an empirical Attack Success Rate (Flip Rate) demonstrating that conversational social proof systematically degrades detector confidence and flips false claim classifications to verified labels.
+We conduct a dual-faceted study: (1) a quantitative and rhetorical linguistic characterization of synthetic comments generated under contrasting personas (Benign Fact-Checker vs. Adversarial Believer) across varied decoding temperatures (0.2 vs. 0.7), and (2) an empirical attack simulation against an LLM-based social-context detector baseline ([ADR-0001](../docs/adr/0001-llm-zero-shot-detector-baseline.md)). Our findings reveal a statistically significant length asymmetry (adversarial comments are 54% longer than skeptical comments), a 4-mechanism qualitative deception taxonomy dominated by anecdotal fabrication and consensus illusions, and an empirical Attack Success Rate (Flip Rate) demonstrating that conversational social proof systematically degrades detector confidence and flips false claim classifications to verified labels.
 
 ---
 
@@ -56,7 +56,7 @@ Each persona was executed at two temperature regimes:
 - `temperature = 0.2`: Low entropy, greedy deterministic phrasing.
 - `temperature = 0.7`: High entropy, colloquial lexical variance.
 
-Total synthesized dataset: **40 empirical comments** (10 claims × 2 personas × 2 temperatures) stored in [phase_2_experimental_results.csv](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notebooks/phase_2_experimental_results.csv).
+Total synthesized dataset: **40 empirical comments** (10 claims × 2 personas × 2 temperatures) stored in [phase_2_experimental_results.csv](../notebooks/phase_2_experimental_results.csv).
 
 ---
 
@@ -119,7 +119,7 @@ Qualitative analysis of the 20 Persona B comments reveals four consistent decept
 ## 4. Social-Context Detector Attack Simulation
 
 ### 4.1 Detector Methodology & Baseline Selection
-As documented in [ADR-0001](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/docs/adr/0001-llm-zero-shot-detector-baseline.md), we deploy `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision under a structured verification prompt as our social-context detector baseline.
+As documented in [ADR-0001](../docs/adr/0001-llm-zero-shot-detector-baseline.md), we deploy `meta-llama/Meta-Llama-3-8B-Instruct` in 4-bit NF4 precision under a structured verification prompt as our social-context detector baseline.
 
 The input is presented as an organic social media feed:
 ```text
@@ -226,9 +226,9 @@ Detectors using cross-attention should implement **Explainable AI (XAI) attentio
 
 All research assets developed across Phases 1 through 3 are fully reproducible in the repository:
 
-- **Phase 3 Colab Notebook**: [notebooks/phase_3_evaluation_and_attack.ipynb](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notebooks/phase_3_evaluation_and_attack.ipynb) (Executable 8-cell notebook).
-- **Phase 3 Evaluation Guide**: [notes/phase_3/phase_3_evaluation_guide.md](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notes/phase_3/phase_3_evaluation_guide.md).
-- **Architectural Decision Record**: [docs/adr/0001-llm-zero-shot-detector-baseline.md](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/docs/adr/0001-llm-zero-shot-detector-baseline.md).
-- **Phase 2 Empirical Dataset**: [notebooks/phase_2_experimental_results.csv](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/notebooks/phase_2_experimental_results.csv) (40 comments).
-- **Domain Glossary**: [GLOSSARY.md](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/GLOSSARY.md).
-- **Master Plan & Daily Log**: [PLAN.md](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/PLAN.md) & [RESEARCH_LOG.md](file:///d:/agent-based-learn/LLM-Research/Research-the-begining/RESEARCH_LOG.md).
+- **Phase 3 Colab Notebook**: [notebooks/phase_3_evaluation_and_attack.ipynb](../notebooks/phase_3_evaluation_and_attack.ipynb) (Executable 8-cell notebook).
+- **Phase 3 Evaluation Guide**: [notes/phase_3/phase_3_evaluation_guide.md](../notes/phase_3/phase_3_evaluation_guide.md).
+- **Architectural Decision Record**: [docs/adr/0001-llm-zero-shot-detector-baseline.md](../docs/adr/0001-llm-zero-shot-detector-baseline.md).
+- **Phase 2 Empirical Dataset**: [notebooks/phase_2_experimental_results.csv](../notebooks/phase_2_experimental_results.csv) (40 comments).
+- **Domain Glossary**: [GLOSSARY.md](../GLOSSARY.md).
+- **Master Plan & Daily Log**: [PLAN.md](../PLAN.md) & [RESEARCH_LOG.md](../RESEARCH_LOG.md).

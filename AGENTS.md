@@ -9,3 +9,8 @@
   - Write division as single-line: `Numerator / Denominator`
   - Example:
     `Aᵢⱼ = exp( (qᵢ · kⱼ)/√d_k + Mᵢⱼ ) / [ ∑_{p=1..L} exp( (qᵢ · kₚ)/√d_k + Mᵢₚ ) ]`
+
+## Repository Links & Documentation Rules
+- **Strictly Repo-Relative Links in Files**: Never write machine-dependent paths or schemes (such as `file:///`, `C:/...`, `D:/...`, or absolute filesystem paths) inside workspace documentation files, markdown notes, code comments, or notebooks.
+- **Cross-Platform Portability**: Always use standard relative markdown links (e.g., `./relative/path.md`, `../../docs/adr/...`) so documentation works seamlessly on GitHub, Google Colab, Linux, Windows, and across different machines.
+- **Distinction between Chat and Files**: While chat responses provide clickable IDE links, any text written or edited inside workspace files MUST strictly remain portable and repo-relative.
