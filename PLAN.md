@@ -71,11 +71,12 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 
 ---
 
-## 📍 Phase 4: Pitching to Your Senior
-*The high-impact message to send him:*
-- Share your clean GitHub repository and runnable Colab notebook.
-- Message script:
-  > *"Hey Shoaib bhai, I followed your advice and set up an 8B model (Meta-Llama-3-8B-Instruct) on Google Colab using 4-bit NF4 quantization on a T4 GPU. Knowing your work on WSDM '26 regarding adversarial comments against fake news detectors, I designed an experiment using open news headlines from the LIAR benchmark to generate benign vs. adversarial comments under controlled personas and evaluated Llama-3's adherence and safety behavior. I documented the pipeline and results in my repository: https://github.com/A-R-Rony/Research-the-begining. I'd love to show you the notebook and see if I can assist with dataset preprocessing or model evaluations in your lab."*
+## 📍 Phase 4: Pitching to Your Senior & Lab Integration ✅ *(In Progress)*
+*The high-impact message to send him and technical defense strategy:*
+- **Guide**: **[notes/phase_4/phase_4_pitch_and_mentorship_guide.md](./notes/phase_4/phase_4_pitch_and_mentorship_guide.md)**
+- **Outreach Templates**: Multi-channel pitch messages (LinkedIn concise note, formal academic email, casual senior approach).
+- **Technical Defense Q&A**: Preparation for four core technical questions on quantization, empirical robustness, WSDM '26 connection, and lab contribution areas.
+- **Repository Showcase**: Full portfolio documentation, ADR-0001, empirical datasets, and runnable Colab notebooks at https://github.com/A-R-Rony/Research-the-begining.
 
 ---
 
@@ -83,3 +84,4 @@ Progress from zero ML experience to executing an empirical applied LLM project t
 - **[CONTEXT.md](./CONTEXT.md)**: Research background, mentorship goal, and log update protocol.
 - **[RESEARCH_LOG.md](./RESEARCH_LOG.md)**: Living daily research journal.
 - **[SENIOR_OVERVIEW.md](./SENIOR_OVERVIEW.md)**: Md Shoaib Ahmed's complete profile and publication analysis.
+
