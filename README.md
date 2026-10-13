@@ -56,11 +56,13 @@ Qualitative analysis of the adversarial comments identified a 4-mechanism taxono
 ## 🧭 Repository Structure & Research Artifacts
 
 ### 📚 Research Journal & Core Documentation
+- **[docs/COMPREHENSIVE_RESEARCH_JOURNEY.md](./docs/COMPREHENSIVE_RESEARCH_JOURNEY.md)**: Master research monograph and technical dossier documenting the full journey from zero ML experience to empirical attack simulation.
 - **[RESEARCH_LOG.md](./RESEARCH_LOG.md)**: Comprehensive daily research journal detailing concepts, experiments, and debugging milestones.
 - **[PLAN.md](./PLAN.md)**: Master 5-phase research roadmap and deliverables.
 - **[CONTEXT.md](./CONTEXT.md)**: Research background, personal goals, and mentorship thesis.
 - **[SENIOR_OVERVIEW.md](./SENIOR_OVERVIEW.md)**: Detailed profile of Md Shoaib Ahmed, citation metrics (767+ citations, h-index: 12), and complete publication catalog.
 - **[GLOSSARY.md](./GLOSSARY.md)**: Canonical terminology definitions for LLM research, tensors, and runtime states.
+
 
 ### 🧪 Google Colab Notebooks
 - **[notebooks/phase_1_llama3_colab.ipynb](./notebooks/phase_1_llama3_colab.ipynb)**: Phase 1 baseline deployment of 4-bit Llama-3-8B on Colab T4.
