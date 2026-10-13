@@ -2,7 +2,8 @@
 
 **Author**: Abdur Rony  
 **Date**: October 2026  
-**Repository**: [github.com/A-R-Rony/Research-the-begining](https://github.com/A-R-Rony/Research-the-begining)  
+**Repository**: [github.com/A-R-Rony/Research-the-begining](https://github.com/A-R-Rony/Research-the-begining) 
+**Read From Github** [COMPREHENSIVE_RESEARCH_JOURNEY](https://github.com/A-R-Rony/Research-the-begining/blob/main/docs/COMPREHENSIVE_RESEARCH_JOURNEY.md)
 
 ---
 
