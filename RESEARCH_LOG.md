@@ -284,4 +284,64 @@ I investigated the background and publications of my senior, **Md Shoaib Ahmed**
 - [x] **Phase 3 Complete**: Empirical attack benchmark executed, linguistic profiling computed, and graduate research report authored.
 - [x] **Phase 4 Complete**: Mentorship outreach templates, technical defense preparation, and repository showcase finalized.
 
+---
+
+## 📅 Day 7: October 21, 2026 — Chapter 2: In-Context Reasoning, Grounding Faithfulness & Lightweight RAG ✅
+
+### 1. Research Objectives Achieved
+- Commenced and completed **Chapter 2** of the research curriculum, focused on the reasoning mechanics of open-weight causal decoders (`meta-llama/Meta-Llama-3-8B-Instruct`).
+- Transitioned from adversarial misinformation generation (Phases 0-4) into defensive in-context verification architectures.
+- Formally approved **[docs/adr/0002-in-context-reasoning-and-lightweight-rag.md](./docs/adr/0002-in-context-reasoning-and-lightweight-rag.md)** establishing 4-bit NF4 Llama-3-8B deployment, in-memory PyTorch cosine retrieval, native chat template compilation, and three-stage epistemic CoT.
+- Authored **[docs/specs/0001-open-weight-in-context-reasoning-spec.md](./docs/specs/0001-open-weight-in-context-reasoning-spec.md)** with 18 user stories and testing seams, tracked via 9 gapless vertical tracer-bullet issues in `.scratch/in-context-reasoning/issues/`.
+- Extended **[GLOSSARY.md](./GLOSSARY.md)** with canonical mathematical and operational definitions for Zero-Shot Prompting, In-Context Learning (ICL), Context-Aware Grounding, and Chain-of-Thought (CoT).
+
+### 2. Theory Curriculum Modules Produced
+1. **[Topic 2.1: Open-Weight Prompt Serialization & KV Cache Dynamics](./chapters/02_in_context_reasoning/notes/topic_2.1_open_weight_prompt_mechanics.md)**: 128k BPE tokenization, byte-level fallback, special header tokens, `apply_chat_template`, and GQA memory math (`KV_Memory_per_token = 2 · n_layers · n_kv_heads · d_head · bytes_per_element = 128 KB/token`).
+2. **[Topic 2.2: Zero-Shot & Few-Shot ICL Mechanics](./chapters/02_in_context_reasoning/notes/topic_2.2_zero_shot_and_few_shot_icl.md)**: Induction head circuits vs. gradient updates, native multi-turn turns vs. monolithic text packing, and exemplar scaling dynamics (`k = 1, 3, 5`).
+3. **[Topic 2.3: Context Grounding & Lightweight RAG](./chapters/02_in_context_reasoning/notes/topic_2.3_context_grounding_and_rag.md)**: Parametric memory collisions, prompt envelopes, evidence faithfulness, dense vector embeddings (`all-MiniLM-L6-v2`), and GPU matrix multiplication (`torch.mm`).
+4. **[Topic 2.4: Chain-of-Thought Reasoning Dynamics](./chapters/02_in_context_reasoning/notes/topic_2.4_chain_of_thought_reasoning.md)**: Autoregressive token conditioning, drift failure modes in 8B models, three-stage epistemic decomposition, and Self-Consistency sampling.
+
+### 3. Curated Empirical Benchmark Datasets
+1. **[data/benchmark_claims_20.json](./chapters/02_in_context_reasoning/data/benchmark_claims_20.json)**: 20 balanced claims (10 True, 10 False) spanning Health, Environment, Economy, Governance, and Technology, isolating 5 historical baseline conspiracies from 15 subtle context-dependent claims.
+2. **[data/knowledge_corpus.json](./chapters/02_in_context_reasoning/data/knowledge_corpus.json)**: 20 verified reference evidence passages sourced from authoritative scientific and governmental bodies (WHO, CDC, BLS, ICCT, IPCC).
+3. **[data/exemplars_bank.json](./chapters/02_in_context_reasoning/data/exemplars_bank.json)**: 6 high-veracity exemplars formatted for both native chat template turns and monolithic text envelopes.
+
+### 4. Executable Research Lab Notebook
+- **[notebooks/chapter_2_in_context_reasoning.ipynb](./chapters/02_in_context_reasoning/notebooks/chapter_2_in_context_reasoning.ipynb)**: 32 modular, self-contained Google Colab T4 cells implementing:
+  - 4-bit NF4 quantized loading of Llama-3-8B and GPU-resident sentence embedder.
+  - Defensive regex JSON parsing handling markdown stripping and unescaped quotes.
+  - Zero-shot baseline evaluation and parametric failure boundary audit.
+  - Few-shot ICL comparison (native chat templates vs. monolithic text packing).
+  - Context-aware grounding and 100% error flip rate demonstration.
+  - Pure PyTorch GPU matrix search (`torch.mm`) dynamic RAG pipeline.
+  - Three-stage epistemic CoT and Self-Consistency sampling (k=3, temperature=0.7).
+  - Multi-paradigm comparative summary matrix and publication-ready charting.
+
+### 5. Empirical Results & Scientific Synthesis (120 Inferences Across 6 Conditions)
+- **1. Zero-Shot Baseline**: **55.0% accuracy** (100% on historical conspiracies; 40% on nuanced claims; mean confidence 0.799).
+- **2. Few-Shot Native (k=3)**: **75.0% accuracy** (+20.0% delta; 100% schema adherence; 1,420 ms latency). Native turns activate post-trained instruction-following circuits.
+- **3. Few-Shot Monolithic (k=3)**: **65.0% accuracy** (+10.0% delta; 90% schema adherence). Text packing induced format drift and pattern over-extension.
+- **4. Context-Aware Grounded**: **100.0% accuracy** (+45.0% delta; 100% flip rate reversing all zero-shot errors; mean confidence 0.970).
+- **5. Dynamic In-Memory RAG**: **95.0% accuracy** (+40.0% delta; 95% Hit@1 in **0.18 ms** GPU latency via `torch.mm`). Matches CoT accuracy while executing **68% faster** (1,395 ms vs 4,410 ms) with only 94 output tokens.
+- **6. Structured Epistemic CoT**: **95.0% accuracy** (+40.0% delta; 382.0 output tokens; 4,410 ms latency). Successfully prevents reasoning traps at a 3.7x compute overhead.
+
+### 6. Deliverable Artifacts Created
+- **Evaluation Report**: **[results/chapter_2_evaluation_report.md](./chapters/02_in_context_reasoning/results/chapter_2_evaluation_report.md)**
+- **Baseline Failure Summary**: **[results/zero_shot_baseline_summary.md](./chapters/02_in_context_reasoning/results/zero_shot_baseline_summary.md)**
+- **Benchmark Raw Records (120 rows)**: **[results/benchmark_results.csv](./chapters/02_in_context_reasoning/results/benchmark_results.csv)**
+- **Benchmark Summary Matrix**: **[results/benchmark_summary_matrix.csv](./chapters/02_in_context_reasoning/results/benchmark_summary_matrix.csv)**
+- **Chapter Syllabus**: **[chapters/02_in_context_reasoning/README.md](./chapters/02_in_context_reasoning/README.md)**
+
+### 7. Milestone Sign-Off
+- [x] **Ticket 01 Complete**: Open-weight prompt serialization and KV cache dynamics.
+- [x] **Ticket 02 Complete**: 20-claim benchmark and knowledge corpus curated.
+- [x] **Ticket 03 Complete**: Colab T4 4-bit environment and baseline pipeline.
+- [x] **Ticket 04 Complete**: Zero-shot baseline evaluated and parametric limits audited.
+- [x] **Ticket 05 Complete**: Context-aware evidence grounding and faithfulness validated.
+- [x] **Ticket 06 Complete**: Few-shot ICL and prompt structure comparison benchmarked.
+- [x] **Ticket 07 Complete**: Structured epistemic CoT and self-consistency implemented.
+- [x] **Ticket 08 Complete**: Unified multi-metric benchmark suite executed (120 runs).
+- [x] **Ticket 09 Complete**: Empirical comparative research report and synthesis authored.
+
+
 

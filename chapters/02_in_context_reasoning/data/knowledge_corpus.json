@@ -1,0 +1,142 @@
+[
+  {
+    "doc_id": "DOC_F01",
+    "claim_id": "F01",
+    "topic": "Health",
+    "title": "CDC Molecular Biology Briefing: mRNA Vaccines and Cell Biology",
+    "text": "Messenger RNA (mRNA) vaccines teach human cells how to manufacture a protein that triggers an immune response. The mRNA from the vaccine never enters the cell nucleus, which is the segregated cellular compartment where genomic DNA is stored. Because mRNA does not enter the nucleus and lacks reverse-transcriptase enzymes, it cannot alter or integrate into human DNA. Furthermore, mRNA degrades naturally within days. No microchips, radio transmitters, or satellite hardware exist in vaccine formulations."
+  },
+  {
+    "doc_id": "DOC_F02",
+    "claim_id": "F02",
+    "topic": "Environment",
+    "title": "NASA Goddard Institute for Space Studies: Drivers of Global Climate Change",
+    "text": "NASA satellite observations and climate models demonstrate that while solar irradiance variations do influence Earth's upper atmosphere, total solar output has fluctuated within a narrow 0.1 percent band since 1750. In contrast, greenhouse gas concentrations (carbon dioxide and methane) produced by fossil fuel combustion and industrial activity have increased atmospheric heat retention by several orders of magnitude greater than solar variance. NASA officially attributes the observed rapid global warming primarily to human greenhouse emissions."
+  },
+  {
+    "doc_id": "DOC_F03",
+    "claim_id": "F03",
+    "topic": "Health",
+    "title": "FDA and Mayo Clinic Consumer Advisory: Colloidal Silver Hazards",
+    "text": "Colloidal silver consists of tiny silver particles suspended in a liquid. The US Food and Drug Administration (FDA) has consistently warned that colloidal silver is not safe or effective for treating any disease, including diabetes. Type 1 diabetes is an autoimmune destruction of pancreatic beta cells requiring lifelong insulin replacement, while Type 2 diabetes involves insulin resistance. Ingesting colloidal silver does not regenerate beta cells, causes permanent skin discoloration called argyria, and can precipitate kidney damage."
+  },
+  {
+    "doc_id": "DOC_F04",
+    "claim_id": "F04",
+    "topic": "Economy",
+    "title": "US Treasury and Federal Reserve Oversight Report: National Debt Accounting",
+    "text": "The United States national debt is tracked through marketable and non-marketable Treasury securities (bills, notes, bonds) issued by the Bureau of the Fiscal Service under congressional statutory debt ceilings. The Federal Reserve acts as a fiscal agent for the US Treasury but does not maintain unilateral authority to alter, delete, or extinguish Treasury debt obligations. All debt issuances and redemptions are subject to dual-entry accounting audited by the Government Accountability Office (GAO). No debt deletion has ever occurred."
+  },
+  {
+    "doc_id": "DOC_F05",
+    "claim_id": "F05",
+    "topic": "Technology",
+    "title": "National Institute of Standards and Technology (NIST): Smart Meter Communications",
+    "text": "Advanced Metering Infrastructure (AMI) smart electric meters record aggregate kilowatt-hour electrical consumption and transmit periodic telemetry data to utility providers using low-power radiofrequency (RF) networks (typically 900 MHz or 2.4 GHz mesh networks). The onboard hardware consists exclusively of current transformers, voltage sensors, and low-bandwidth digital transmitters. Smart utility meters contain no microphones, acoustic sensors, or analog audio processing circuitry capable of intercepting speech."
+  },
+  {
+    "doc_id": "DOC_F06",
+    "claim_id": "F06",
+    "topic": "Economy",
+    "title": "Bureau of Labor Statistics (BLS): How the Government Measures Unemployment",
+    "text": "The headline unemployment rate published by the Bureau of Labor Statistics (designated U-3) does not include every jobless adult. To be categorized as unemployed under the official U-3 definition, an individual must be without a job, available for work, and must have actively searched for employment during the preceding 4-week survey reference period. Individuals who desire employment but have ceased actively looking (discouraged workers) or full-time students, retirees, and homemakers are classified as 'not in the labor force' rather than unemployed."
+  },
+  {
+    "doc_id": "DOC_F07",
+    "claim_id": "F07",
+    "topic": "Health",
+    "title": "Cochrane Systematic Review: Vitamin C for Preventing and Treating the Common Cold",
+    "text": "A comprehensive meta-analysis of 29 placebo-controlled trials involving 11,306 participants found that routine daily supplementation with Vitamin C (ascorbic acid) at dosages of 1 gram per day or higher failed to reduce the incidence of colds in the general community population. While prophylactic supplementation produced a modest reduction in cold duration (8 percent in adults, 14 percent in children), it failed to produce a statistically significant preventative barrier against contracting rhinoviruses."
+  },
+  {
+    "doc_id": "DOC_F08",
+    "claim_id": "F08",
+    "topic": "Technology",
+    "title": "International Council on Clean Transportation (ICCT): Global Lifecycle Emissions of EVs",
+    "text": "Comprehensive life-cycle assessments (LCA) analyzing vehicle manufacturing, battery raw material extraction, electricity grid generation, and vehicle disposal demonstrate that electric vehicles (EVs) produce substantially lower total lifetime greenhouse gas emissions than comparable internal combustion engine vehicles. Although initial manufacturing of an EV battery produces roughly 30 to 40 percent higher emissions during factory assembly, the superior efficiency of electric powertrains allows EVs to break even within 12 to 24 months of driving, resulting in 50 to 70 percent lower lifetime emissions."
+  },
+  {
+    "doc_id": "DOC_F09",
+    "claim_id": "F09",
+    "topic": "Governance",
+    "title": "Congressional Research Service (CRS): Size and Structure of the Supreme Court",
+    "text": "Article III of the United States Constitution establishes the Supreme Court but leaves the size and composition of the court entirely to statutory determination by Congress. The Constitution does not specify nine justices. Historically, the Judiciary Act of 1789 established a court of six justices. The number subsequently changed five times: reduced to five in 1801, increased to seven in 1807, increased to nine in 1837, and expanded to ten in 1863 before being set at nine by the Judiciary Act of 1869."
+  },
+  {
+    "doc_id": "DOC_F10",
+    "claim_id": "F10",
+    "topic": "Science",
+    "title": "Scientific American / University of Virginia Physics Bulletin: The Terminal Velocity of a Falling Penny",
+    "text": "Due to its flat, disc-shaped geometry and low mass (2.5 grams), a falling penny experiences substantial aerodynamic drag and turbulence, causing it to tumble rather than slice through the air like a dart. Physicist Louis Bloomfield conducted wind tunnel and skyscraper drop experiments confirming that a penny reaches its terminal velocity after falling approximately 50 feet. At terminal velocity (roughly 35 to 40 kilometers per hour), its kinetic energy is less than 1 Joule—insufficient to break human skin, penetrate concrete, or cause lethal trauma."
+  },
+  {
+    "doc_id": "DOC_T01",
+    "claim_id": "T01",
+    "topic": "Science",
+    "title": "Health Physics Society: Environmental Radioactivity and the Banana Equivalent Dose",
+    "text": "Commercial bananas contain abundant potassium, a vital nutrient. Approximately 0.012 percent of all naturally occurring potassium consists of the unstable radioactive isotope potassium-40 (K-40), which has a half-life of 1.25 billion years and undergoes beta-minus and electron capture decay. A standard medium banana contains roughly 450 milligrams of potassium, producing approximately 15 Becquerels of radioactive decay events per second. In health physics, this benchmark is formally known as the 'banana equivalent dose'."
+  },
+  {
+    "doc_id": "DOC_T02",
+    "claim_id": "T02",
+    "topic": "Technology",
+    "title": "Physics Today: Relativistic Time Dilation in the Global Positioning System",
+    "text": "Operational GPS satellites orbit at altitudes of approximately 20,200 kilometers at speeds of roughly 14,000 km/h. According to Einstein's special relativity, their high orbital speed causes satellite atomic clocks to tick slower than clocks on Earth by approximately 7 microseconds per day. Conversely, according to general relativity, being higher in Earth's gravitational potential causes them to tick faster by approximately 45 microseconds per day. The net relativistic difference is plus 38 microseconds per day. Left uncorrected, this discrepancy would compound navigational errors by roughly 11 kilometers every 24 hours."
+  },
+  {
+    "doc_id": "DOC_T03",
+    "claim_id": "T03",
+    "topic": "Economy",
+    "title": "Federal Reserve Board: The Structure and Ownership of the Federal Reserve System",
+    "text": "The Federal Reserve System possesses a unique public-private dual architecture. While the Board of Governors in Washington D.C. is an independent federal government agency appointed by the President and confirmed by the Senate, the 12 regional Federal Reserve Banks (such as the Federal Reserve Bank of New York) are organized legally as private corporations. The commercial member banks operating within each district are required by law to purchase non-transferable stock in their regional Reserve Bank and elect two-thirds of its board of directors."
+  },
+  {
+    "doc_id": "DOC_T04",
+    "claim_id": "T04",
+    "topic": "Health",
+    "title": "Centers for Disease Control and Prevention (CDC): Rabies Clinical Course and Outcomes",
+    "text": "Rabies virus exhibits an encephalitic disease progression with a clinical fatality rate approaching 100 percent once neurological symptoms emerge. In 2004, physicians in Wisconsin developed the Milwaukee protocol, an experimental regimen involving therapeutic induced coma and antiviral neuroprotective therapy, which enabled 15-year-old Jeanna Giese to become the first documented patient in medical history to survive symptomatic rabies without receiving pre- or post-exposure rabies vaccination. While survival remains exceedingly rare, approximately 20 to 30 documented survivors have since been reported globally."
+  },
+  {
+    "doc_id": "DOC_T05",
+    "claim_id": "T05",
+    "topic": "Environment",
+    "title": "Nature Climate Change: The Net Radiative Forcing of High-Latitude Boreal Afforestation",
+    "text": "While planting trees sequesters atmospheric carbon dioxide, afforestation in high-latitude snow-covered boreal zones alters the Earth's surface albedo (reflectivity). Snow reflects up to 80 percent of incoming solar radiation back into space. When dark, dense evergreen conifer canopies replace reflective snow-covered tundra, they absorb substantial quantities of solar radiation, converting it into heat. In many northern boreal regions, this positive radiative albedo forcing outweighs the cooling effect of carbon sequestration, creating net localized warming."
+  },
+  {
+    "doc_id": "DOC_T06",
+    "claim_id": "T06",
+    "topic": "Governance",
+    "title": "The Nordic Cultural Registry: Patronymic Naming and Icelandic Directory Systems",
+    "text": "Iceland retains an ancient patronymic naming convention where individuals do not carry hereditary family surnames. Instead, a person's surname is derived directly from their father's (or mother's) given name with the suffix -son or -dottir. Because surnames vary between siblings of different genders and across generations, telephone directories (Ja.is) and official national registry rolls in Iceland are organized alphabetically by the individual's given first name, followed by their patronymic name and profession."
+  },
+  {
+    "doc_id": "DOC_T07",
+    "claim_id": "T07",
+    "topic": "Technology",
+    "title": "Subsea Telecom Forum: Global Submarine Cable Infrastructure Report",
+    "text": "Contrary to the widespread belief that the modern global internet operates primarily through orbiting communications satellites, international communications are almost entirely physical. Over 95 to 99 percent of all transoceanic and intercontinental data traffic is transmitted via a global network of over 500 undersea fiber optic cables laid across ocean floors. Subsea fiber optic lines offer bandwidth capacity reaching hundreds of terabits per second with latency measured in milliseconds, far exceeding satellite throughput."
+  },
+  {
+    "doc_id": "DOC_T08",
+    "claim_id": "T08",
+    "topic": "Science",
+    "title": "American Journal of Physics: The Myth of Flowing Cathedral Window Glass",
+    "text": "An enduring urban legend claims that antique medieval cathedral stained glass is thicker at the bottom because glass is a supercooled liquid that has slowly flowed downward over centuries. Atomic force microscopy and solid-state physics demonstrate that window glass is an amorphous solid: its molecular structure exhibits disordered packing like a liquid, but its viscosity at room temperature is roughly 10 raised to the 21st power Pascal-seconds. At this rate, noticeable downward deformation would require trillions of years. Cathedral glass was simply manufactured with uneven thickness using medieval crown glass spinning techniques."
+  },
+  {
+    "doc_id": "DOC_T09",
+    "claim_id": "T09",
+    "topic": "Health",
+    "title": "Cell Biology Quarterly: Revised Estimates for the Number of Human and Bacterial Cells in the Body",
+    "text": "For decades, medical literature frequently cited an unverified 1972 estimate stating that the human body contains ten times more bacterial cells than human cells (a 10-to-1 ratio). In 2016, a rigorous quantitative recalculation published by researchers at the Weizmann Institute of Science determined that the average human reference body (a 70 kg adult male) contains roughly 30 trillion human cells and approximately 38 trillion bacterial cells (primarily concentrated in the colon). The revised scientific ratio is roughly 1.3 to 1, indicating that bacterial and human cells are nearly equal in number."
+  },
+  {
+    "doc_id": "DOC_T10",
+    "claim_id": "T10",
+    "topic": "Economy",
+    "title": "Norges Bank Investment Management (NBIM): Annual Portfolio Asset Report",
+    "text": "Norway's Government Pension Fund Global, managed by Norges Bank Investment Management, is the world's largest single sovereign wealth fund, with assets exceeding 1.7 trillion dollars generated from North Sea petroleum revenue. The fund invests surplus capital abroad across global equity markets, fixed-income bonds, and real estate. Official portfolio audits confirm that the fund holds ownership shares in approximately 9,000 publicly traded corporations across more than 70 nations, holding an average equity stake of roughly 1.5 percent of all publicly listed companies on Earth."
+  }
+]

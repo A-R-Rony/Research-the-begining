@@ -55,3 +55,20 @@ _Avoid_: Error rate, deception rate, hack rate
 **Adversarial Perturbation (Textual)**:
 A strategically crafted textual sequence injected into a model's input context to manipulate its classification output while maintaining apparent naturalness to human readers.
 _Avoid_: Jailbreak prompt, spam, malicious noise
+
+**Zero-Shot Prompting**:
+Querying an instruction-tuned model to perform an inference task relying solely on system guidelines without in-context demonstration examples.
+_Avoid_: Unsupervised inference, raw prompting, cold querying
+
+**In-Context Learning (ICL)**:
+Conditioning an autoregressive language model on demonstration exemplars within the context window to steer task execution without parameter updates.
+_Avoid_: Few-shot fine-tuning, prompt training, exemplar tuning
+
+**Context-Aware Grounding**:
+Restricting model reasoning and factual generation to an explicitly provided external evidence passage rather than its internal parametric memory.
+_Avoid_: Prompt injection, background priming, document dump
+
+**Chain-of-Thought (CoT)**:
+An inference scaffolding methodology where a model generates an articulated intermediate reasoning trajectory prior to its terminal verdict.
+_Avoid_: Step-by-step thinking, explanation generation, scratchpad output
+

@@ -14,18 +14,21 @@ Utilizing `meta-llama/Meta-Llama-3-8B-Instruct` deployed in 4-bit NormalFloat4 (
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
-│                     THE 4-PHASE RESEARCH PIPELINE                        │
+│                     THE RESEARCH TRAJECTORY & CHAPTERS                   │
 ├──────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│  Phase 0: Mathematical & VRAM Foundations (8B Weights, NF4 Dequant)      │
-│     │                                                                    │
-│  Phase 1: Operational Colab T4 Milestone (NF4 Llama-3-8B in ~5.4 GB VRAM)│
-│     │                                                                    │
-│  Phase 2: Dual-Persona Synthetic Comment Synthesis (40 Empirical Samples)│
-│     │                                                                    │
-│  Phase 3: Linguistic Profiling, Attack Simulation & Academic Report      │
-│     │                                                                    │
-│  Phase 4: Lab Pitch & Research Integration (Boise State University)      │
+│  Phases 0-4: Adversarial Misinformation & Attack Surface (WSDM '26)      │
+│     - Phase 0: Mathematical & VRAM Foundations                           │
+│     - Phase 1: Operational Colab T4 Milestone (NF4 Llama-3-8B)           │
+│     - Phase 2: Dual-Persona Synthetic Comment Synthesis (40 Samples)     │
+│     - Phase 3: Linguistic Profiling, Attack Simulation & Academic Report │
+│     - Phase 4: Lab Pitch & Research Integration (Boise State)            │
+│                                                                          │
+│  Chapter 2: In-Context Reasoning, Grounding & Lightweight RAG            │
+│     - Zero-Shot vs. Native/Monolithic Few-Shot ICL                       │
+│     - Context-Aware Grounding & In-Memory GPU Matrix RAG (0.18 ms)       │
+│     - Structured Epistemic Chain-of-Thought (CoT) & Self-Consistency     │
+│     - 120-Inference Multi-Metric Empirical Benchmark Suite               │
 │                                                                          │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
@@ -81,6 +84,20 @@ Qualitative analysis of the adversarial comments identified a 4-mechanism taxono
 ### 💾 Datasets
 - **[notebooks/phase_2_experimental_results.csv](./notebooks/phase_2_experimental_results.csv)**: 40 synthesized comments across 10 claims and 2 personas.
 - **[notebooks/phase_3_evaluation_results.csv](./notebooks/phase_3_evaluation_results.csv)**: Full 50-inference evaluation matrix with veracity predictions, confidence scores, and rationales.
+
+### 🧠 Chapter 2: In-Context Reasoning & Lightweight RAG
+- **[Chapter 2 Syllabus](./chapters/02_in_context_reasoning/README.md)**: Curriculum overview, 4-pillar theory index, and laboratory instructions.
+- **[Chapter 2 Colab Notebook](./chapters/02_in_context_reasoning/notebooks/chapter_2_in_context_reasoning.ipynb)**: Executable 32-cell research notebook on Google Colab T4.
+- **[Formal Evaluation Report](./chapters/02_in_context_reasoning/results/chapter_2_evaluation_report.md)**: Graduate-level empirical research report synthesizing findings across 120 recorded evaluations.
+- **[ADR-0002](./docs/adr/0002-in-context-reasoning-and-lightweight-rag.md)**: Architectural Decision Record for 4-bit NF4 Llama-3-8B and PyTorch GPU matrix retrieval.
+- **[Spec 0001](./docs/specs/0001-open-weight-in-context-reasoning-spec.md)**: Formal specification and 18 user stories for in-context reasoning paradigms.
+- **Curated Datasets**:
+  - [data/benchmark_claims_20.json](./chapters/02_in_context_reasoning/data/benchmark_claims_20.json): 20 balanced evaluation claims.
+  - [data/knowledge_corpus.json](./chapters/02_in_context_reasoning/data/knowledge_corpus.json): 20 verified reference evidence passages.
+  - [data/exemplars_bank.json](./chapters/02_in_context_reasoning/data/exemplars_bank.json): 6 dual-formatted few-shot exemplars.
+- **Benchmark Metrics**:
+  - [results/benchmark_results.csv](./chapters/02_in_context_reasoning/results/benchmark_results.csv): 120-inference raw evaluation records.
+  - [results/benchmark_summary_matrix.csv](./chapters/02_in_context_reasoning/results/benchmark_summary_matrix.csv): Metric comparison matrix across all 6 paradigms.
 
 ---
 

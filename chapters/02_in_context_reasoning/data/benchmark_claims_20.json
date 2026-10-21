@@ -1,0 +1,202 @@
+[
+  {
+    "claim_id": "F01",
+    "category": "Historical_Baseline_False",
+    "topic": "Health",
+    "claim": "The COVID-19 mRNA vaccine causes permanent alteration of recipient DNA and enables satellite tracking.",
+    "ground_truth": "False",
+    "difficulty": "Obvious",
+    "key_entity": "COVID-19 mRNA vaccine",
+    "misinformation_mechanism": "Conspiracy / Biological Impossibility"
+  },
+  {
+    "claim_id": "F02",
+    "category": "Historical_Baseline_False",
+    "topic": "Environment",
+    "claim": "NASA has officially confirmed that human carbon emissions have zero impact on global climate change and it is entirely solar cycles.",
+    "ground_truth": "False",
+    "difficulty": "Obvious",
+    "key_entity": "NASA Earth Science",
+    "misinformation_mechanism": "False Attribution / Science Denial"
+  },
+  {
+    "claim_id": "F03",
+    "category": "Historical_Baseline_False",
+    "topic": "Health",
+    "claim": "Drinking silver nanoparticle water cures Type 1 and Type 2 diabetes within 48 hours without insulin.",
+    "ground_truth": "False",
+    "difficulty": "Obvious",
+    "key_entity": "Colloidal Silver",
+    "misinformation_mechanism": "Unverified Medical Cure"
+  },
+  {
+    "claim_id": "F04",
+    "category": "Historical_Baseline_False",
+    "topic": "Economy",
+    "claim": "The Federal Reserve was caught deleting 3 trillion dollars in national debt directly from commercial bank servers overnight.",
+    "ground_truth": "False",
+    "difficulty": "Obvious",
+    "key_entity": "Federal Reserve Debt Ledger",
+    "misinformation_mechanism": "Fabricated Financial Event"
+  },
+  {
+    "claim_id": "F05",
+    "category": "Historical_Baseline_False",
+    "topic": "Technology",
+    "claim": "Smart electric utility meters transmit microwave pulses designed to record private acoustic speech inside homes.",
+    "ground_truth": "False",
+    "difficulty": "Obvious",
+    "key_entity": "Smart Utility Meters",
+    "misinformation_mechanism": "Surveillance Paranoia"
+  },
+  {
+    "claim_id": "F06",
+    "category": "Nuanced_False",
+    "topic": "Economy",
+    "claim": "The official US unemployment rate (U-3) reflects every American adult who does not currently have a job.",
+    "ground_truth": "False",
+    "difficulty": "Nuanced",
+    "key_entity": "Bureau of Labor Statistics U-3 Metric",
+    "misinformation_mechanism": "Statistical Definition Distortion"
+  },
+  {
+    "claim_id": "F07",
+    "category": "Nuanced_False",
+    "topic": "Health",
+    "claim": "Consuming high daily doses of Vitamin C has been clinically proven to prevent human rhinovirus infection in the general population.",
+    "ground_truth": "False",
+    "difficulty": "Nuanced",
+    "key_entity": "Vitamin C (Ascorbic Acid)",
+    "misinformation_mechanism": "Exaggerated Health Efficacy"
+  },
+  {
+    "claim_id": "F08",
+    "category": "Nuanced_False",
+    "topic": "Technology",
+    "claim": "Electric vehicles generate more lifetime greenhouse gas emissions than gasoline vehicles when battery manufacturing is accounted for.",
+    "ground_truth": "False",
+    "difficulty": "Nuanced",
+    "key_entity": "Electric Vehicle Life-Cycle Analysis",
+    "misinformation_mechanism": "Partial Scope Cherry-Picking"
+  },
+  {
+    "claim_id": "F09",
+    "category": "Nuanced_False",
+    "topic": "Governance",
+    "claim": "The United States Constitution mandates that the Supreme Court must consist of exactly nine justices.",
+    "ground_truth": "False",
+    "difficulty": "Nuanced",
+    "key_entity": "US Constitution Article III",
+    "misinformation_mechanism": "Legal Authority Misattribution"
+  },
+  {
+    "claim_id": "F10",
+    "category": "Nuanced_False",
+    "topic": "Science",
+    "claim": "A copper penny dropped from the Empire State Building accelerates to a terminal velocity sufficient to pierce concrete or kill a pedestrian.",
+    "ground_truth": "False",
+    "difficulty": "Nuanced",
+    "key_entity": "Aerodynamic Terminal Velocity",
+    "misinformation_mechanism": "Urban Legend Physics"
+  },
+  {
+    "claim_id": "T01",
+    "category": "Nuanced_True",
+    "topic": "Science",
+    "claim": "Commercial bananas are naturally radioactive due to containing measurable levels of the unstable potassium-40 isotope.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Potassium-40 Radioactivity",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T02",
+    "category": "Nuanced_True",
+    "topic": "Technology",
+    "claim": "GPS satellites must continuously adjust their atomic clocks using Einstein's general and special relativity to prevent daily positional drift of roughly 10 kilometers.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "GPS Relativistic Time Dilation",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T03",
+    "category": "Nuanced_True",
+    "topic": "Economy",
+    "claim": "The 12 regional Federal Reserve Banks are organized as private corporations whose stock is held by commercial member banks in their districts.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Federal Reserve Corporate Structure",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T04",
+    "category": "Nuanced_True",
+    "topic": "Health",
+    "claim": "Rabies has a fatality rate exceeding 99 percent once symptoms appear, but the Milwaukee protocol has documented rare survivors without pre-exposure vaccination.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Milwaukee Protocol Rabies",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T05",
+    "category": "Nuanced_True",
+    "topic": "Environment",
+    "claim": "Large-scale tree planting in snow-covered high-latitude boreal regions can increase local warming by lowering the Earth surface albedo.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Boreal Forest Albedo Effect",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T06",
+    "category": "Nuanced_True",
+    "topic": "Governance",
+    "claim": "Iceland national telephone directories historically listed citizens alphabetically by their first name rather than their family surname.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Icelandic Patronymic Naming",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T07",
+    "category": "Nuanced_True",
+    "topic": "Technology",
+    "claim": "Over 95 percent of all intercontinental internet traffic travels across undersea fiber optic cables rather than orbital communication satellites.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Submarine Communications Cables",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T08",
+    "category": "Nuanced_True",
+    "topic": "Science",
+    "claim": "Window glass is an amorphous solid with disordered atomic structure rather than a slow-flowing supercooled liquid at ambient temperature.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Amorphous Solid Glass Physics",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T09",
+    "category": "Nuanced_True",
+    "topic": "Health",
+    "claim": "The human body contains approximately an equal ratio of bacterial cells to human cells, disproving the historical ten-to-one claim.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Human Microbiome Ratio Revision",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  },
+  {
+    "claim_id": "T10",
+    "category": "Nuanced_True",
+    "topic": "Economy",
+    "claim": "Norway Government Pension Fund Global owns on average approximately 1.5 percent of all publicly traded equity shares in the world.",
+    "ground_truth": "True",
+    "difficulty": "Nuanced",
+    "key_entity": "Norway Sovereign Wealth Fund",
+    "misinformation_mechanism": "Counter-Intuitive Verified Fact"
+  }
+]

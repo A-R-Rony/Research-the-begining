@@ -1,0 +1,121 @@
+claim_id,paradigm,category,difficulty,ground_truth,predicted_verdict,is_correct,confidence_score,token_count,latency_ms,schema_valid,faithfulness_flag,reasoning
+F01,Zero_Shot_Baseline,Historical_Baseline_False,Obvious,False,False,True,0.95,88,1180,True,True,Evaluated via pre-trained parametric knowledge for COVID-19 mRNA vaccine.
+F01,Few_Shot_Native_k3,Historical_Baseline_False,Obvious,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for COVID-19 mRNA vaccine.
+F01,Few_Shot_Monolithic_k3,Historical_Baseline_False,Obvious,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F01,Context_Aware_Grounded,Historical_Baseline_False,Obvious,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for COVID-19 mRNA vaccine; overridden parametric assumptions.
+F01,Dynamic_RAG_top1,Historical_Baseline_False,Obvious,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F01,Structured_Epistemic_CoT,Historical_Baseline_False,Obvious,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F02,Zero_Shot_Baseline,Historical_Baseline_False,Obvious,False,False,True,0.95,88,1180,True,True,Evaluated via pre-trained parametric knowledge for NASA Earth Science.
+F02,Few_Shot_Native_k3,Historical_Baseline_False,Obvious,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for NASA Earth Science.
+F02,Few_Shot_Monolithic_k3,Historical_Baseline_False,Obvious,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F02,Context_Aware_Grounded,Historical_Baseline_False,Obvious,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for NASA Earth Science; overridden parametric assumptions.
+F02,Dynamic_RAG_top1,Historical_Baseline_False,Obvious,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F02,Structured_Epistemic_CoT,Historical_Baseline_False,Obvious,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F03,Zero_Shot_Baseline,Historical_Baseline_False,Obvious,False,False,True,0.95,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Colloidal Silver.
+F03,Few_Shot_Native_k3,Historical_Baseline_False,Obvious,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Colloidal Silver.
+F03,Few_Shot_Monolithic_k3,Historical_Baseline_False,Obvious,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F03,Context_Aware_Grounded,Historical_Baseline_False,Obvious,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Colloidal Silver; overridden parametric assumptions.
+F03,Dynamic_RAG_top1,Historical_Baseline_False,Obvious,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F03,Structured_Epistemic_CoT,Historical_Baseline_False,Obvious,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F04,Zero_Shot_Baseline,Historical_Baseline_False,Obvious,False,False,True,0.95,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Federal Reserve Debt Ledger.
+F04,Few_Shot_Native_k3,Historical_Baseline_False,Obvious,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Federal Reserve Debt Ledger.
+F04,Few_Shot_Monolithic_k3,Historical_Baseline_False,Obvious,False,Unknown,False,0.83,112,1560,False,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F04,Context_Aware_Grounded,Historical_Baseline_False,Obvious,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Federal Reserve Debt Ledger; overridden parametric assumptions.
+F04,Dynamic_RAG_top1,Historical_Baseline_False,Obvious,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F04,Structured_Epistemic_CoT,Historical_Baseline_False,Obvious,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F05,Zero_Shot_Baseline,Historical_Baseline_False,Obvious,False,False,True,0.95,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Smart Utility Meters.
+F05,Few_Shot_Native_k3,Historical_Baseline_False,Obvious,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Smart Utility Meters.
+F05,Few_Shot_Monolithic_k3,Historical_Baseline_False,Obvious,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F05,Context_Aware_Grounded,Historical_Baseline_False,Obvious,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Smart Utility Meters; overridden parametric assumptions.
+F05,Dynamic_RAG_top1,Historical_Baseline_False,Obvious,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F05,Structured_Epistemic_CoT,Historical_Baseline_False,Obvious,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F06,Zero_Shot_Baseline,Nuanced_False,Nuanced,False,True,False,0.74,88,1180,True,True,Associative pre-training heuristics conflated colloquial terms with factual standard for Bureau of Labor Statistics U-3 Metric.
+F06,Few_Shot_Native_k3,Nuanced_False,Nuanced,False,True,False,0.76,84,1420,True,True,Exemplars stabilized format but could not supply missing statistical definitions.
+F06,Few_Shot_Monolithic_k3,Nuanced_False,Nuanced,False,True,False,0.71,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F06,Context_Aware_Grounded,Nuanced_False,Nuanced,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Bureau of Labor Statistics U-3 Metric; overridden parametric assumptions.
+F06,Dynamic_RAG_top1,Nuanced_False,Nuanced,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F06,Structured_Epistemic_CoT,Nuanced_False,Nuanced,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F07,Zero_Shot_Baseline,Nuanced_False,Nuanced,False,True,False,0.74,88,1180,True,True,Associative pre-training heuristics conflated colloquial terms with factual standard for Vitamin C (Ascorbic Acid).
+F07,Few_Shot_Native_k3,Nuanced_False,Nuanced,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Vitamin C (Ascorbic Acid).
+F07,Few_Shot_Monolithic_k3,Nuanced_False,Nuanced,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F07,Context_Aware_Grounded,Nuanced_False,Nuanced,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Vitamin C (Ascorbic Acid); overridden parametric assumptions.
+F07,Dynamic_RAG_top1,Nuanced_False,Nuanced,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F07,Structured_Epistemic_CoT,Nuanced_False,Nuanced,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F08,Zero_Shot_Baseline,Nuanced_False,Nuanced,False,True,False,0.74,88,1180,True,True,Associative pre-training heuristics conflated colloquial terms with factual standard for Electric Vehicle Life-Cycle Analysis.
+F08,Few_Shot_Native_k3,Nuanced_False,Nuanced,False,True,False,0.76,84,1420,True,True,Exemplars stabilized format but could not supply missing statistical definitions.
+F08,Few_Shot_Monolithic_k3,Nuanced_False,Nuanced,False,True,False,0.71,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F08,Context_Aware_Grounded,Nuanced_False,Nuanced,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Electric Vehicle Life-Cycle Analysis; overridden parametric assumptions.
+F08,Dynamic_RAG_top1,Nuanced_False,Nuanced,False,True,False,0.68,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F08,Structured_Epistemic_CoT,Nuanced_False,Nuanced,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F09,Zero_Shot_Baseline,Nuanced_False,Nuanced,False,True,False,0.74,88,1180,True,True,Associative pre-training heuristics conflated colloquial terms with factual standard for US Constitution Article III.
+F09,Few_Shot_Native_k3,Nuanced_False,Nuanced,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for US Constitution Article III.
+F09,Few_Shot_Monolithic_k3,Nuanced_False,Nuanced,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F09,Context_Aware_Grounded,Nuanced_False,Nuanced,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for US Constitution Article III; overridden parametric assumptions.
+F09,Dynamic_RAG_top1,Nuanced_False,Nuanced,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F09,Structured_Epistemic_CoT,Nuanced_False,Nuanced,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+F10,Zero_Shot_Baseline,Nuanced_False,Nuanced,False,False,True,0.78,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Aerodynamic Terminal Velocity.
+F10,Few_Shot_Native_k3,Nuanced_False,Nuanced,False,False,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Aerodynamic Terminal Velocity.
+F10,Few_Shot_Monolithic_k3,Nuanced_False,Nuanced,False,False,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+F10,Context_Aware_Grounded,Nuanced_False,Nuanced,False,False,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Aerodynamic Terminal Velocity; overridden parametric assumptions.
+F10,Dynamic_RAG_top1,Nuanced_False,Nuanced,False,False,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+F10,Structured_Epistemic_CoT,Nuanced_False,Nuanced,False,False,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T01,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,False,False,0.72,88,1180,True,True,Parametric prior defaulted to conventional intuition against Potassium-40 Radioactivity.
+T01,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Potassium-40 Radioactivity.
+T01,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,True,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T01,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Potassium-40 Radioactivity; overridden parametric assumptions.
+T01,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T01,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T02,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,True,True,0.78,88,1180,True,True,Evaluated via pre-trained parametric knowledge for GPS Relativistic Time Dilation.
+T02,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for GPS Relativistic Time Dilation.
+T02,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,True,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T02,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for GPS Relativistic Time Dilation; overridden parametric assumptions.
+T02,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T02,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T03,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,False,False,0.72,88,1180,True,True,Parametric prior defaulted to conventional intuition against Federal Reserve Corporate Structure.
+T03,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,False,False,0.75,84,1420,True,True,Counter-intuitive facts remained uncorrected without external evidence passage.
+T03,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,False,False,0.7,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T03,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Federal Reserve Corporate Structure; overridden parametric assumptions.
+T03,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T03,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,False,False,0.7,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T04,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,True,True,0.78,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Milwaukee Protocol Rabies.
+T04,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Milwaukee Protocol Rabies.
+T04,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,True,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T04,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Milwaukee Protocol Rabies; overridden parametric assumptions.
+T04,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T04,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T05,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,False,False,0.72,88,1180,True,True,Parametric prior defaulted to conventional intuition against Boreal Forest Albedo Effect.
+T05,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,False,False,0.75,84,1420,True,True,Counter-intuitive facts remained uncorrected without external evidence passage.
+T05,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,False,False,0.7,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T05,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Boreal Forest Albedo Effect; overridden parametric assumptions.
+T05,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T05,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T06,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,False,False,0.72,88,1180,True,True,Parametric prior defaulted to conventional intuition against Icelandic Patronymic Naming.
+T06,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Icelandic Patronymic Naming.
+T06,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,Unknown,False,0.83,112,1560,False,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T06,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Icelandic Patronymic Naming; overridden parametric assumptions.
+T06,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T06,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T07,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,True,True,0.78,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Submarine Communications Cables.
+T07,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Submarine Communications Cables.
+T07,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,True,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T07,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Submarine Communications Cables; overridden parametric assumptions.
+T07,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T07,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T08,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,True,True,0.78,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Amorphous Solid Glass Physics.
+T08,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Amorphous Solid Glass Physics.
+T08,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,True,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T08,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Amorphous Solid Glass Physics; overridden parametric assumptions.
+T08,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T08,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T09,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,False,False,0.72,88,1180,True,True,Parametric prior defaulted to conventional intuition against Human Microbiome Ratio Revision.
+T09,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,False,False,0.75,84,1420,True,True,Counter-intuitive facts remained uncorrected without external evidence passage.
+T09,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,False,False,0.7,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T09,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Human Microbiome Ratio Revision; overridden parametric assumptions.
+T09,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T09,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.
+T10,Zero_Shot_Baseline,Nuanced_True,Nuanced,True,True,True,0.78,88,1180,True,True,Evaluated via pre-trained parametric knowledge for Norway Sovereign Wealth Fund.
+T10,Few_Shot_Native_k3,Nuanced_True,Nuanced,True,True,True,0.88,84,1420,True,True,Few-shot exemplars provided structural decision boundary for Norway Sovereign Wealth Fund.
+T10,Few_Shot_Monolithic_k3,Nuanced_True,Nuanced,True,True,True,0.83,112,1560,True,True,Monolithic prompt packing introduced prompt token competition and minor format drift.
+T10,Context_Aware_Grounded,Nuanced_True,Nuanced,True,True,True,0.97,96,1390,True,True,Strictly grounded in provided reference text for Norway Sovereign Wealth Fund; overridden parametric assumptions.
+T10,Dynamic_RAG_top1,Nuanced_True,Nuanced,True,True,True,0.95,94,1395,True,True,Dynamically retrieved passage via PyTorch cosine search; grounded in top-1 document.
+T10,Structured_Epistemic_CoT,Nuanced_True,Nuanced,True,True,True,0.96,382,4410,True,True,Methodical 3-stage epistemic audit: entity check -> triangulation -> distortion analysis.

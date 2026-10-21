@@ -1,0 +1,110 @@
+[
+  {
+    "exemplar_id": "EX01",
+    "topic": "Science",
+    "claim": "Water boils at a lower temperature at the summit of Mount Everest than at sea level.",
+    "ground_truth": "True",
+    "context_passage": "Atmospheric pressure decreases with altitude. At sea level (standard 1 atmosphere), the boiling point of water is 100 degrees Celsius (212 degrees Fahrenheit). On the summit of Mount Everest (elevation 8,848 meters), atmospheric pressure drops to approximately one-third of sea level pressure, causing water to boil at approximately 71 degrees Celsius (160 degrees Fahrenheit).",
+    "native_chat_messages": [
+      {
+        "role": "user",
+        "content": "Evaluate the veracity of the following claim:\n\nClaim: Water boils at a lower temperature at the summit of Mount Everest than at sea level.\n\nRespond strictly in valid JSON with keys: veracity_prediction, confidence_score, and reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"veracity_prediction\": \"True\",\n  \"confidence_score\": 0.99,\n  \"reasoning\": \"Reduced atmospheric pressure at high altitudes lowers the kinetic energy required for water molecules to transition to vapor, lowering the boiling point from 100C to roughly 71C at Everest summit.\"\n}"
+      }
+    ],
+    "monolithic_text": "Example 1:\nClaim: Water boils at a lower temperature at the summit of Mount Everest than at sea level.\nOutput: {\"veracity_prediction\": \"True\", \"confidence_score\": 0.99, \"reasoning\": \"Reduced atmospheric pressure at high altitudes lowers the boiling point of water from 100C to roughly 71C.\"}"
+  },
+  {
+    "exemplar_id": "EX02",
+    "topic": "Technology",
+    "claim": "Fifth-generation (5G) cellular networks emit ionizing radiation capable of dislodging electrons from human cellular tissue.",
+    "ground_truth": "False",
+    "context_passage": "5G mobile networks utilize electromagnetic spectrum frequencies spanning low-band (sub-1 GHz), mid-band (3.5 GHz), and high-band millimeter waves (24 to 39 GHz). All radiofrequencies are classified by physicists as non-ionizing radiation because quantum photon energy is millions of times weaker than the threshold required to ionize atoms, break molecular chemical bonds, or alter DNA.",
+    "native_chat_messages": [
+      {
+        "role": "user",
+        "content": "Evaluate the veracity of the following claim:\n\nClaim: Fifth-generation (5G) cellular networks emit ionizing radiation capable of dislodging electrons from human cellular tissue.\n\nRespond strictly in valid JSON with keys: veracity_prediction, confidence_score, and reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"veracity_prediction\": \"False\",\n  \"confidence_score\": 0.99,\n  \"reasoning\": \"5G transmissions operate in the non-ionizing radiofrequency spectrum, whose photon energy is physical orders of magnitude below the energy threshold needed to ionize atoms or cause molecular ionization.\"\n}"
+      }
+    ],
+    "monolithic_text": "Example 2:\nClaim: Fifth-generation (5G) cellular networks emit ionizing radiation capable of dislodging electrons from human cellular tissue.\nOutput: {\"veracity_prediction\": \"False\", \"confidence_score\": 0.99, \"reasoning\": \"5G uses non-ionizing radio waves with photon energies too weak to dislodge electrons or damage molecular bonds.\"}"
+  },
+  {
+    "exemplar_id": "EX03",
+    "topic": "Health",
+    "claim": "Human fingernails and toenails continue to actively grow for several weeks following biological death.",
+    "ground_truth": "False",
+    "context_passage": "Biological nail growth requires sustained cellular division in the nail germinal matrix, driven by glucose metabolism and blood perfusion. When a human dies, cellular metabolism ceases immediately. The visual illusion that fingernails grow after death occurs because the surrounding skin and soft tissue undergo postmortem dehydration and desiccation, causing the skin to pull back and expose more nail length.",
+    "native_chat_messages": [
+      {
+        "role": "user",
+        "content": "Evaluate the veracity of the following claim:\n\nClaim: Human fingernails and toenails continue to actively grow for several weeks following biological death.\n\nRespond strictly in valid JSON with keys: veracity_prediction, confidence_score, and reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"veracity_prediction\": \"False\",\n  \"confidence_score\": 0.98,\n  \"reasoning\": \"Cellular mitosis terminates upon death; the apparent elongation of nails is an anatomical optical illusion caused by dehydration and retraction of surrounding soft tissue.\"\n}"
+      }
+    ],
+    "monolithic_text": "Example 3:\nClaim: Human fingernails and toenails continue to actively grow for several weeks following biological death.\nOutput: {\"veracity_prediction\": \"False\", \"confidence_score\": 0.98, \"reasoning\": \"Cell division stops upon death; apparent nail elongation is an illusion caused by postmortem skin retraction.\"}"
+  },
+  {
+    "exemplar_id": "EX04",
+    "topic": "Economy",
+    "claim": "The United States Bureau of Engraving and Printing issues paper currency bills, while the United States Mint manufactures all circulating coins.",
+    "ground_truth": "True",
+    "context_passage": "Under Title 31 of the United States Code, two distinct Department of the Treasury bureaus produce American physical money. The Bureau of Engraving and Printing (BEP), established in 1862, is solely responsible for designing and printing Federal Reserve paper currency notes. The United States Mint, founded in 1792, is solely responsible for striking all circulating coins (pennies, nickels, dimes, quarters) and commemorative bullion.",
+    "native_chat_messages": [
+      {
+        "role": "user",
+        "content": "Evaluate the veracity of the following claim:\n\nClaim: The United States Bureau of Engraving and Printing issues paper currency bills, while the United States Mint manufactures all circulating coins.\n\nRespond strictly in valid JSON with keys: veracity_prediction, confidence_score, and reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"veracity_prediction\": \"True\",\n  \"confidence_score\": 0.99,\n  \"reasoning\": \"Under federal law, the Bureau of Engraving and Printing exclusively prints paper Federal Reserve notes, whereas the US Mint exclusively strikes all metallic circulating coinage.\"\n}"
+      }
+    ],
+    "monolithic_text": "Example 4:\nClaim: The United States Bureau of Engraving and Printing issues paper currency bills, while the United States Mint manufactures all circulating coins.\nOutput: {\"veracity_prediction\": \"True\", \"confidence_score\": 0.99, \"reasoning\": \"Federal statutory authority divides US physical currency production between BEP for paper banknotes and the US Mint for metallic coins.\"}"
+  },
+  {
+    "exemplar_id": "EX05",
+    "topic": "Environment",
+    "claim": "Atmospheric lightning discharges produce natural nitrogen oxide compounds that fertilize plant life.",
+    "ground_truth": "True",
+    "context_passage": "During a lightning discharge, air temperatures inside the lightning channel exceed 30,000 Kelvin. This extreme thermal energy splits diatomic atmospheric nitrogen (N2) and oxygen (O2) molecules, allowing them to bond into nitric oxide (NO) and nitrogen dioxide (NO2). These gases react with rain precipitation to form nitrates and nitric acid, which fall to soil as naturally bioavailable nitrogen fertilizer.",
+    "native_chat_messages": [
+      {
+        "role": "user",
+        "content": "Evaluate the veracity of the following claim:\n\nClaim: Atmospheric lightning discharges produce natural nitrogen oxide compounds that fertilize plant life.\n\nRespond strictly in valid JSON with keys: veracity_prediction, confidence_score, and reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"veracity_prediction\": \"True\",\n  \"confidence_score\": 0.98,\n  \"reasoning\": \"Extreme thermal energy in lightning channels breaks atmospheric N2 bonds to form nitrogen oxides, which dissolve in rainwater as bioavailable soil nitrates.\"\n}"
+      }
+    ],
+    "monolithic_text": "Example 5:\nClaim: Atmospheric lightning discharges produce natural nitrogen oxide compounds that fertilize plant life.\nOutput: {\"veracity_prediction\": \"True\", \"confidence_score\": 0.98, \"reasoning\": \"Lightning discharges split atmospheric nitrogen and oxygen into nitrates that precipitate into soil as natural nitrogen fertilizer.\"}"
+  },
+  {
+    "exemplar_id": "EX06",
+    "topic": "Governance",
+    "claim": "The United States Constitution permits the President to unilaterally adjourn Congress at any time without congressional consent.",
+    "ground_truth": "False",
+    "context_passage": "Article II, Section 3 of the US Constitution permits presidential adjournment of Congress only in one narrow, conditional circumstance: 'in Case of Disagreement between them, with Respect to the Time of Adjournment, he may adjourn them to such Time as he shall think proper.' The President possesses no unilateral authority to adjourn Congress when the House and Senate are in mutual agreement on their legislative calendar.",
+    "native_chat_messages": [
+      {
+        "role": "user",
+        "content": "Evaluate the veracity of the following claim:\n\nClaim: The United States Constitution permits the President to unilaterally adjourn Congress at any time without congressional consent.\n\nRespond strictly in valid JSON with keys: veracity_prediction, confidence_score, and reasoning."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"veracity_prediction\": \"False\",\n  \"confidence_score\": 0.97,\n  \"reasoning\": \"Under Article II, Section 3, the President can only adjourn Congress if the House and Senate formally disagree on the date of adjournment, not unilaterally at will.\"\n}"
+      }
+    ],
+    "monolithic_text": "Example 6:\nClaim: The United States Constitution permits the President to unilaterally adjourn Congress at any time without congressional consent.\nOutput: {\"veracity_prediction\": \"False\", \"confidence_score\": 0.97, \"reasoning\": \"Presidential adjournment power is strictly conditioned on a formal impasse between the House and Senate regarding adjournment timing.\"}"
+  }
+]

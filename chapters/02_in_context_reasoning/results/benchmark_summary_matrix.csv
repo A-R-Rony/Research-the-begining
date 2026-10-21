@@ -1,0 +1,7 @@
+Paradigm,Accuracy_Pct,Mean_Confidence,Mean_Output_Tokens,Mean_Latency_ms,Schema_Adherence_Pct,Delta_vs_Baseline_Pct
+Zero Shot Baseline,55.0,0.799,88.0,1180.0,100.0,0.0
+Few Shot Native k3,75.0,0.849,84.0,1420.0,100.0,20.0
+Few Shot Monolithic k3,65.0,0.798,112.0,1560.0,90.0,10.0
+Context Aware Grounded,100.0,0.97,96.0,1390.0,100.0,45.0
+Dynamic RAG top1,95.0,0.936,94.0,1395.0,100.0,40.0
+Structured Epistemic CoT,95.0,0.947,382.0,4410.0,100.0,40.0
