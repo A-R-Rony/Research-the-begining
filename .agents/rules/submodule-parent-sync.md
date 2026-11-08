@@ -19,3 +19,4 @@ Whenever any commits are pushed to `origin main` in `Research-the-begining`, the
 
 ## Invariant Guarantee
 The parent repository on GitHub must never point to an outdated commit hash. Both repositories must stay in lockstep.
+
