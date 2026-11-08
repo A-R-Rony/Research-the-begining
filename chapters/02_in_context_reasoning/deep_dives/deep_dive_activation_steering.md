@@ -94,14 +94,90 @@ Prompt String
 [ Softmax Sampling ] ──► Predicted Next Token
 ```
 
-1. **The Residual Stream as a Conveyor Belt**:
-   The residual stream is a 4,096-dimensional shared trunk road that flows from the bottom layer to the top. Each token's state vector travels down this stream.
-2. **Attention and MLP Sub-Layers as Workers**:
-   At each of the 32 layers, the Self-Attention mechanism reads from the stream to communicate across tokens, and the MLP sub-layer performs non-linear feature processing. Crucially, each sub-layer **adds** its output back to the stream via a residual connection:
-   
-   `h_new = h_old + SubLayer(h_old)`
+<div align="center">
+  <img src="../../../notes/assets/llama3_decoder_architecture.jpg" alt="Meta Llama-3 Decoder Architecture Diagram" width="480" />
+  <p><b>Figure 1:</b> <i>Decoder-only architecture of Meta Llama-3 / 3.1. Notice the continuous residual skip connection running vertically along the left of each transformer block, bypassing RMSNorm, Grouped-Query Attention, and SwiGLU MLP sub-layers.</i></p>
+</div>
 
-Because information is combined additively, we can inject our own mathematical vector `v` directly into the stream using a forward hook without breaking the forward calculation!
+### 3.1 The Residual Stream as a Conveyor Belt
+In traditional deep neural networks (like classical MLPs or early CNNs), each layer completely overwrote the hidden state of the preceding layer:
+
+$$\mathbf{h}_{l+1} = f\left(\mathbf{W}_l \mathbf{h}_l + \mathbf{b}_l\right)$$
+
+In that legacy paradigm, activation steering is impossible: if you inject a steering vector $\mathbf{v}$ at Layer 15, the dense weight matrices and non-linear activations at Layers 16, 17, and 18 will distort, rotate, and scramble $\mathbf{v}$ into chaotic noise.
+
+The Transformer overcomes this through the **Residual Connection** (He et al., 2015; Vaswani et al., 2017). Think of the residual stream as a **factory assembly conveyor belt** carrying a 4,096-dimensional container for each token position from Layer 0 to Layer 31:
+- The token begins at the bottom as a pure word embedding vector $\mathbf{h}_{\text{embed}} \in \mathbb{R}^{4096}$.
+- The container travels down the conveyor belt through 32 stacked transformer layers.
+- Crucially, the layers **never destroy or replace the container**. They only read from it, compute an update, and add it back into the ongoing stream.
+
+---
+
+### 3.2 Attention and MLP Sub-Layers as Factory Workers
+At each of the 32 transformer layers, two specialized sub-layers sit alongside the conveyor belt:
+
+1. **Station 1: Multi-Head Self-Attention (GQA)**:
+   Reads the container, searches across neighbor tokens in the context window via the Key-Value (KV) cache, and drops an informational delta packet $\Delta \mathbf{h}_{\text{attn}}$ into the stream.
+2. **Station 2: Feed-Forward Network (SwiGLU MLP)**:
+   Reads the container in isolation, queries its internal parametric associative memory, and drops a non-linear feature delta packet $\Delta \mathbf{h}_{\text{mlp}}$ into the stream.
+
+Mathematically, each sub-layer operation is purely **additive**:
+
+$$\mathbf{h}_{\text{mid}} = \mathbf{h}_{\text{old}} + \text{Attention}\left( \text{RMSNorm}(\mathbf{h}_{\text{old}}) \right)$$
+
+$$\mathbf{h}_{\text{new}} = \mathbf{h}_{\text{mid}} + \text{MLP}\left( \text{RMSNorm}(\mathbf{h}_{\text{mid}}) \right)$$
+
+When unrolled across all 32 layers of Llama-3.1-8B, the final hidden state vector $\mathbf{h}_{32}$ arriving at the unembedding head is simply the accumulated sum of all layer updates:
+
+$$\mathbf{h}_{32} = \mathbf{h}_{\text{embed}} + \sum_{l=0}^{31} \left[ \Delta \mathbf{h}_{\text{attn}, l} + \Delta \mathbf{h}_{\text{mlp}, l} \right]$$
+
+---
+
+### 3.3 The Forward Hook Injection Mechanics
+Because the architecture is intrinsically designed to accumulate additive deltas, we can attach a **PyTorch forward hook** at Layer 15 (`model.model.layers[15]`):
+
+```text
+Layer 15 Residual Stream (h₁₅) ───► [ + ] ───► Steered Residual Stream (h'₁₅)
+                                      ▲
+                                      │
+                         Injected: α · v_norm
+```
+
+Mathematically, the hook performs:
+
+$$\mathbf{h}'_{15} = \mathbf{h}_{15} + \alpha \cdot \mathbf{v}_{\text{norm}}$$
+
+Where:
+- $\mathbf{h}_{15} \in \mathbb{R}^{4096}$ is the original hidden state vector output by Layer 15.
+- $\mathbf{v}_{\text{norm}} \in \mathbb{R}^{4096}$ is the unit steering vector ($\|\mathbf{v}_{\text{norm}}\|_2 = 1.0$) isolating our target concept (e.g., the Eiffel Tower).
+- $\alpha \in \mathbb{R}$ is the scalar steering multiplier governing intervention intensity.
+
+Downstream layers (Layers 16 through 31) have no mechanism to distinguish whether a delta packet came from Layer 14's SwiGLU MLP or from our external forward hook. To Layer 16, our steering vector $\alpha \cdot \mathbf{v}_{\text{norm}}$ simply looks like internal reasoning that happened one layer earlier!
+
+---
+
+### 3.4 How the Injected Vector Reaches the Output Logits
+At Layer 32, the final accumulated vector $\mathbf{h}_{32}$ passes through the final RMSNorm and is projected onto the 128,256-token vocabulary by the **Language Model Head (`lm_head`)**:
+
+$$\mathbf{z} = \mathbf{W}_{\text{unembed}} \cdot \text{RMSNorm}(\mathbf{h}_{32})$$
+
+Substituting our steered hidden state vector:
+
+$$\mathbf{z}_{\text{steered}} = \mathbf{W}_{\text{unembed}} \cdot \text{RMSNorm}\left( \mathbf{h}_{\text{normal}} + \alpha \cdot \mathbf{v}_{\text{norm}} \right)$$
+
+Because matrix multiplication distributes linearly across vector additions:
+
+$$\mathbf{z}_{\text{steered}} \approx \underbrace{\mathbf{W}_{\text{unembed}} \cdot \text{RMSNorm}(\mathbf{h}_{\text{normal}})}_{\mathbf{z}_{\text{baseline}}} + \alpha \cdot \underbrace{\left( \mathbf{W}_{\text{unembed}} \cdot \mathbf{v}_{\text{norm}} \right)}_{\Delta \mathbf{z}_{\text{concept}}}$$
+
+This equation reveals the exact mathematical bridge:
+1. $\mathbf{z}_{\text{baseline}}$: The baseline logits over vocabulary $\mathcal{V}$ the model would normally produce.
+2. $\alpha \cdot \Delta \mathbf{z}_{\text{concept}}$: **A direct, proportional mathematical boost applied to the logit scores of all vocabulary tokens aligned with the steering vector!**
+
+Tokens strongly aligned with $\mathbf{v}_{\text{norm}}$ (such as `"Eiffel"`, `"Paris"`, `"tower"`, `"lattice"`, and `"monument"`) receive a massive positive logit boost. When passed through the terminal Softmax function:
+
+$$P(\text{token}_i \mid \mathbf{h}_{32}) = \frac{\exp(z_i)}{\sum_{j \in \mathcal{V}} \exp(z_j)}$$
+
+Their selection probability jumps toward 100 percent, cleanly steering generation without updating a single weight on disk.
 
 ---
 

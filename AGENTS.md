@@ -1,14 +1,14 @@
 # Workspace Agent Instructions
 
-## Chat Formatting Rules
-- **ABSOLUTE BAN on Dollar Signs and Backslashes**: Never use `$`, `$$`, `\`, `_{}`, or `^{}` in chat text or code blocks. The chat UI renders them literally as broken code.
-- **No ASCII Fraction Art**: Do not use horizontal line drawing (`────`) to build fractions in code blocks.
-- **Use Clean Standard Math Notation**:
-  - Use Unicode subscripts/superscripts: `Aᵢⱼ`, `qᵢ`, `kⱼ`, `vⱼ`, `Mᵢⱼ`, `e⁻∞ = 0`, `eˣ`, `√128`, `1 / √d_k`, `σ² = 1`, `≈`, `·`, `∑`
-  - Write summations clearly: `∑ (from p=1 to L)` or `sum_{p=1..L}`
-  - Write division as single-line: `Numerator / Denominator`
-  - Example:
-    `Aᵢⱼ = exp( (qᵢ · kⱼ)/√d_k + Mᵢⱼ ) / [ ∑_{p=1..L} exp( (qᵢ · kₚ)/√d_k + Mᵢₚ ) ]`
+## Mathematical Formatting Rules
+- **Use Proper LaTeX Display Math Blocks**: Format standalone equations, formulas, and derivations using standard LaTeX display math blocks (`$$ ... $$`).
+- **Standard LaTeX Notation**:
+  - Vectors and matrices: `\mathbf{h}`, `\mathbf{W}`, `\mathbf{v}`, `\mathbf{z}`
+  - Functions & operations: `\text{RMSNorm}`, `\text{Attention}`, `\text{MLP}`, `\text{Softmax}`, `\exp`, `\sum`
+  - Inline variables: `$\alpha$`, `$\mathbf{h}_{15}$`, `$\|\mathbf{v}_{\text{norm}}\|_2 = 1.0$`
+- **No ASCII Fraction Art**: Never use horizontal line drawing (`────`) to build fractions; always use `\frac{\text{Numerator}}{\text{Denominator}}` inside LaTeX math blocks.
+- **Example**:
+  $$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}} + \mathbf{M}\right)\mathbf{V}$$
 
 ## Repository Links & Documentation Rules
 - **Strictly Repo-Relative Links in Files**: Never write machine-dependent paths or schemes (such as `file:///`, `C:/...`, `D:/...`, or absolute filesystem paths) inside workspace documentation files, markdown notes, code comments, or notebooks.
