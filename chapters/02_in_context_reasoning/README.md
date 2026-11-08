@@ -35,8 +35,12 @@ chapters/02_in_context_reasoning/
 │   ├── topic_2.3_context_grounding_and_rag.md     # Grounding faithfulness, dense embeddings, PyTorch cosine search
 │   └── topic_2.4_chain_of_thought_reasoning.md    # Epistemic decomposition, drift prevention, self-consistency
 │
+├── deep_dives/                                    # Mechanistic deep dives & representation engineering
+│   └── deep_dive_activation_steering.md           # Activation steering, SAEs, & Eiffel Tower Llama mechanics
+│
 ├── notebooks/                                     # Runnable Google Colab T4 environments
-│   └── chapter_2_in_context_reasoning.ipynb       # Interactive lab executing all four paradigms
+│   ├── chapter_2_in_context_reasoning.ipynb       # Interactive lab executing all four paradigms
+│   └── activation_steering_llama3_1.ipynb         # Hands-on activation steering & sweep comparison on Llama 3.1
 │
 ├── data/                                          # Benchmark datasets and knowledge corpora
 │   ├── benchmark_claims_20.json                   # 20 curated claims (5 baseline + 15 nuanced context claims)
@@ -55,6 +59,7 @@ chapters/02_in_context_reasoning/
 ### Stage 1: Foundational Theory (Notes)
 - Study [notes/topic_2.1_open_weight_prompt_mechanics.md](./notes/topic_2.1_open_weight_prompt_mechanics.md) to understand how strings are mapped to tokens and wrapped by Llama-3 special delimiters.
 - Study [notes/topic_2.2_zero_shot_and_few_shot_icl.md](./notes/topic_2.2_zero_shot_and_few_shot_icl.md) to master how few-shot exemplars shape attention matrices.
+- Study [deep_dives/deep_dive_activation_steering.md](./deep_dives/deep_dive_activation_steering.md) for a mechanistic deep dive into direct latent intervention, Sparse Autoencoders (SAEs), and the "Eiffel Tower Llama" experiment.
 - Study [notes/topic_2.3_context_grounding_and_rag.md](./notes/topic_2.3_context_grounding_and_rag.md) to understand semantic vector spaces and dense retrieval mechanics.
 - Study [notes/topic_2.4_chain_of_thought_reasoning.md](./notes/topic_2.4_chain_of_thought_reasoning.md) to explore multi-step deductive reasoning and prompt constraints.
 
@@ -65,6 +70,7 @@ chapters/02_in_context_reasoning/
 ### Stage 3: Interactive Execution (Notebooks)
 - Open and run [notebooks/chapter_2_in_context_reasoning.ipynb](./notebooks/chapter_2_in_context_reasoning.ipynb) on Google Colab with an NVIDIA T4 GPU.
 - Execute Zero-Shot, Few-Shot (testing k=1, 3, 5 with template comparison), Context-Aware Grounding + RAG, and Structured CoT.
+- Open and run [notebooks/activation_steering_llama3_1.ipynb](./notebooks/activation_steering_llama3_1.ipynb) to experiment hands-on with Contrastive Activation Addition (CAA), SAE steering, and intensity sweeps on Llama 3.1.
 
 ### Stage 4: Empirical Evaluation (Results)
 - Inspect generated metrics in [results/benchmark_results.csv](./results/benchmark_results.csv).

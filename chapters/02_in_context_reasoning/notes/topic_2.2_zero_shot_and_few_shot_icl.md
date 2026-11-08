@@ -113,6 +113,8 @@ Research by Dai et al. (2022) mathematically proved that the attention operation
 
 In summary: **Supervised Fine-Tuning rewires the neural network's physical connections on disk, whereas In-Context Learning uses the prompt's Key-Value activations to steer electrical current through the existing, frozen wiring.**
 
+> 🔬 **Mechanistic Deep Dive**: For a comprehensive exploration of direct latent intervention, Sparse Autoencoders (SAEs), and the "Eiffel Tower Llama" experiment on Llama 3.1 8B (as presented in Hugging Face's *Steering LLM Behavior Without Fine-Tuning*), read our dedicated deep dive: [Deep Dive: Activation Steering & Representation Engineering](../deep_dives/deep_dive_activation_steering.md).
+
 ---
 
 ## 2. Formatting Mechanics: Native Multi-Turn vs. Monolithic Packing
@@ -329,5 +331,6 @@ Before deploying a Few-Shot ICL pipeline:
 
 - **Syllabus**: [Chapter 2 README](../README.md)
 - **Previous Topic**: [Topic 2.1: Open-Weight Prompt Serialization](./topic_2.1_open_weight_prompt_mechanics.md)
+- **Mechanistic Deep Dive**: [Deep Dive: Activation Steering](../deep_dives/deep_dive_activation_steering.md)
 - **Next Topic**: [Topic 2.3: Context-Aware Grounding and Lightweight RAG](./topic_2.3_context_grounding_and_rag.md)
 - **Ticket Status**: [Ticket 04 Tracker](../../../.scratch/in-context-reasoning/issues/04-few-shot-icl-native-turns-vs-monolithic-packing.md)
